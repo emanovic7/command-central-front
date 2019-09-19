@@ -1,26 +1,74 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+//Components
+import LoginPage from './components/user_pages/LoginPage';
+import ProfilePage from './components/user_pages/ProfilePage';
+import SignUpPage from './components/user_pages/SignUpPage';
+
+
+//Containers
+import TasksContainer from './containers/tasksContainer';
+
+
+class App extends Component {
+
+  googleAPI = "AIzaSyDlFzVIkqtTEuuhFi5ACR6OVx-YbtkVWOc";
+
+  constructor(){
+    super()
+    this.state = {
+      page: 'login',
+      username: '',
+      user_id: ''
+    }
+  }
+
+  componentDidMount() {
+    fetch('http://localhost:3000/profile',{
+      headers: {
+        'Authorization': `Bearer ${localStorage.token}`
+      }
+    })
+    .then(res => res.json())
+    .then(user => this.setState({
+      username: user.current_user.username,
+      user_id: user.current_user.id
+    })
+  )
+  if(localStorage.token){
+    this.redirectPage('profile')
+  }
 }
+
+
+  redirectPage = (page) => {
+    this.setState({
+      page: page
+    })
+  }
+
+  render(){
+    switch (this.state.page) {
+      case 'login':
+        return <LoginPage redirectPage={this.redirectPage}/>
+      case 'profile':
+        return (
+                <div>
+                  <ProfilePage redirectPage={this.redirectPage} username={this.state.username}/>
+                  <TasksContainer username={this.state.username} user_id={this.state.user_id}/>
+                </div>)
+      case 'signup':
+        return <SignUpPage />
+
+      default:
+        return <LoginPage />
+    }
+  }
+
+
+
+}
+
 
 export default App;
