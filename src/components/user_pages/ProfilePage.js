@@ -24,7 +24,6 @@ class ProfilePage extends Component {
   }
 
   render(){
-    console.log(this.props)
     return(
       <div>
       <button onClick={this.handleLogout}>Logout</button>

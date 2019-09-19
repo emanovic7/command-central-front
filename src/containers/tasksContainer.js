@@ -107,9 +107,6 @@ class TasksContainer extends Component {
       <li><Task key={task.id} task={task} handleClick={this.handleComplete} /><button onClick={() => this.handleDelete(task)}>X</button></li>
     )
     //
-    console.log("all tasks", this.state.tasks)
-    console.log("incomplete", userIncompleteTasks)
-    console.log("complete", this.state.completed)
 
     return (
       <div>

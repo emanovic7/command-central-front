@@ -9,11 +9,14 @@ import SignUpPage from './components/user_pages/SignUpPage';
 
 //Containers
 import TasksContainer from './containers/tasksContainer';
+import DisplayElementsContainer from './containers/displayElementsContainer';
+import WeatherContainer from './containers/weatherContainer';
+import CalendarContainer from './containers/calendarContainer';
 
 
 class App extends Component {
 
-  
+
 
   constructor(){
     super()
@@ -24,6 +27,7 @@ class App extends Component {
     }
   }
 
+  //GRAB USER
   componentDidMount() {
     fetch('http://localhost:3000/profile',{
       headers: {
@@ -41,12 +45,14 @@ class App extends Component {
   }
 }
 
-
+  //SET SELECTED PAGE
   redirectPage = (page) => {
     this.setState({
       page: page
     })
   }
+
+
 
   render(){
     switch (this.state.page) {
@@ -56,7 +62,10 @@ class App extends Component {
         return (
                 <div>
                   <ProfilePage redirectPage={this.redirectPage} username={this.state.username}/>
+                  <WeatherContainer /><br />
+                  <DisplayElementsContainer />
                   <TasksContainer username={this.state.username} user_id={this.state.user_id}/>
+                  <CalendarContainer />
                 </div>)
       case 'signup':
         return <SignUpPage />
