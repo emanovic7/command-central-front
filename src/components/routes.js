@@ -13,7 +13,7 @@ class Routes extends Component {
 
 
   handleRoutesFetch = () => {
-    const API_KEY = "AIzaSyDlFzVIkqtTEuuhFi5ACR6OVx-YbtkVWOc"
+    
 
     fetch(`${'https://cors-anywhere.herokuapp.com/'}https://maps.googleapis.com/maps/api/directions/json?origin=Brooklyn&destination=Queens&mode=transit&key=${API_KEY}`)
     .then(response => response.json())

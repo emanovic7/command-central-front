@@ -13,7 +13,7 @@ import TasksContainer from './containers/tasksContainer';
 
 class App extends Component {
 
-  googleAPI = "AIzaSyDlFzVIkqtTEuuhFi5ACR6OVx-YbtkVWOc";
+  
 
   constructor(){
     super()
