@@ -26,15 +26,10 @@ class DisplayElementsContainer extends Component {
   render(){
     return(
       <div>
-        <div>
-          <button onClick={this.handleButtonSelect}>News</button><br />
-          <button onClick={this.handleButtonSelect}>Directions</button><br />
-          <button onClick={this.handleButtonSelect}>Food</button><br />
-          <button onClick={this.handleButtonSelect}>Stocks</button><br />
-          <button onClick={this.handleButtonSelect}>Sports</button><br />
-        </div>
 
-        <div > {/* Elements */}
+
+        <div >
+              <h1 className="">{this.state.selectedButton}</h1>
           {this.state.selectedButton === '' ? <NewsContainer /> :
           this.state.selectedButton === "News" ? <NewsContainer /> :
           this.state.selectedButton === "Food" ? <p>grup</p> :

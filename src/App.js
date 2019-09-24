@@ -1,47 +1,58 @@
 import React, { Component } from 'react';
 import './App.css';
+import { Switch, Route, withRouter } from 'react-router-dom';
+
+
+//STYLING
+import { makeStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
+import Container from '@material-ui/core/Container';
 
 //Components
 import LoginPage from './components/user_pages/LoginPage';
 import ProfilePage from './components/user_pages/ProfilePage';
 import SignUpPage from './components/user_pages/SignUpPage';
-
+import SpacingGrid from './components/spacingGrid';
 
 //Containers
 import TasksContainer from './containers/tasksContainer';
 import DisplayElementsContainer from './containers/displayElementsContainer';
 import WeatherContainer from './containers/weatherContainer';
 import CalendarContainer from './containers/calendarContainer';
+import NavBarContainer from './containers/navBarContainer';
+import RestaurantsContainer from './containers/restaurantsContainer';
+
+
 
 
 class App extends Component {
 
-
-
   constructor(){
     super()
     this.state = {
-      page: 'login',
       username: '',
       user_id: ''
     }
   }
 
-  //GRAB USER
+//   //GRAB USER
   componentDidMount() {
-    fetch('http://localhost:3000/profile',{
-      headers: {
-        'Authorization': `Bearer ${localStorage.token}`
-      }
-    })
-    .then(res => res.json())
-    .then(user => this.setState({
-      username: user.current_user.username,
-      user_id: user.current_user.id
-    })
-  )
-  if(localStorage.token){
-    this.redirectPage('profile')
+    if (localStorage.token){
+      fetch('http://localhost:3000/profile',{
+        headers: {
+          'Authorization': `Bearer ${localStorage.token}`
+        }
+      })
+      .then(res => res.json())
+      .then(user => this.setState({
+        username: user.username,
+        user_id: user.id
+      })
+    )
+  }
+  else {
+    this.props.history.push('/login')
   }
 }
 
@@ -55,24 +66,35 @@ class App extends Component {
 
 
   render(){
-    switch (this.state.page) {
-      case 'login':
-        return <LoginPage redirectPage={this.redirectPage}/>
-      case 'profile':
-        return (
-                <div>
-                  <ProfilePage redirectPage={this.redirectPage} username={this.state.username}/>
-                  <WeatherContainer /><br />
-                  <DisplayElementsContainer />
-                  <TasksContainer username={this.state.username} user_id={this.state.user_id}/>
-                  <CalendarContainer />
-                </div>)
-      case 'signup':
-        return <SignUpPage />
+    console.log(this.state)
+    return(
+      <Switch>
+        <Route
+          path={"/profile"}
+          render={routerProps => <ProfilePage {...routerProps} username={this.state.username} user_id={this.state.user_id}/>} />
 
-      default:
-        return <LoginPage />
-    }
+        <Route path={"/login"} component={LoginPage} />
+        <Route exact path={"/"} component={SignUpPage} />
+      </Switch>
+    )
+
+    // switch (this.state.page) {
+    //   case 'login':
+    //     return <LoginPage redirectPage={this.redirectPage}/>
+    //   case 'profile':
+    //     return (
+    //         <div className="">
+    //           <ProfilePage />
+    //           <SpacingGrid />
+    //         </div>
+    //       )
+    //
+    //   case 'signup':
+    //     return <SignUpPage />
+    //
+    //   default:
+    //     return <LoginPage />
+    // }
   }
 
 
@@ -80,4 +102,4 @@ class App extends Component {
 }
 
 
-export default App;
+export default withRouter(App);

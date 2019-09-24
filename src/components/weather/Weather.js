@@ -3,17 +3,12 @@ import React from 'react';
 
 
 const Weather = (props) => {
-  console.log(props.weather)
-
-  const currently = props.weather.currently;
-  const hourly = props.weather.hourly
-  console.log("Currently", currently)
-  console.log("Hourly", hourly)
 
   return(
     <div>
-      <p>Time: {props.weather.timezone}</p>
-
+      <p>Summary: {props.currently.summary}</p>
+      <p>Temperature: {props.currently.temperature}</p>
+      <p>Humidity: {props.currently.humidity}</p>
     </div>
   )
 }

@@ -1,4 +1,14 @@
 import React, { Component } from 'react';
+import TextField from '@material-ui/core/TextField';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Avatar from '@material-ui/core/Avatar';
+import Button from '@material-ui/core/Button';
+import Link from '@material-ui/core/Link';
+import Paper from '@material-ui/core/Paper';
+import Box from '@material-ui/core/Box';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
 
 
 
@@ -35,7 +45,7 @@ class LoginPage extends Component {
     .then(data => {
       if(data.token){
         localStorage.token = data.token
-        this.props.redirectPage('profile')
+        this.props.history.push('/profile')
       }
     })
 
@@ -44,8 +54,8 @@ class LoginPage extends Component {
   render(){
     return(
       <div>
+      <h2>Please Login!</h2>
         <form onSubmit={this.handleSubmit}>
-          <h2>Please Login!</h2>
           <label>Username</label>
           <input tyep="text" name="username" value={this.state.username} onChange={this.handleChange} /><br />
           <label>Password</label>
