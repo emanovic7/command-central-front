@@ -1,12 +1,25 @@
 import React, { Component, Fragment } from 'react';
-import SpacingGrid from '../../components/spacingGrid';
+import { ThemeProvider } from '@material-ui/styles';
+import theme from '../../components/theme';
 
+
+
+//STYLING
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Typography from '@material-ui/core/Typography';
+import Container from '@material-ui/core/Container';
+
+//COMPONENTS
+import DashBoardGrid from '../../components/dashBoardGrid';
+import SpacingGrid from '../../components/spacingGrid';
+import CenteredGrid from '../../components/centeredGrid';
 
 //CONTAINERS
 import TasksContainer from '../../containers/tasksContainer';
 import RestaurantsContainer from '../../containers/restaurantsContainer';
 import WeatherContainer from '../../containers/weatherContainer';
 import RoutesContainer from '../../containers/routesContainer';
+import DisplayElementsContainer from '../../containers/displayElementsContainer';
 
 class ProfilePage extends Component {
 
@@ -35,7 +48,7 @@ class ProfilePage extends Component {
   render(){
     console.log(this.state)
 
-    switch (this.state.component) {
+   switch (this.state.component) {
       case 'toDo':
         return <TasksContainer user_id={this.props.user_id} username={this.props.username} />
       case 'restaurants':
@@ -47,15 +60,22 @@ class ProfilePage extends Component {
 
       default:
         return (
+
+
           <React.Fragment>
             <div>
               <button onClick={this.handleLogout}>Logout</button>
               {this.props.username ? <h2>Welcome {this.props.username}!</h2> : <h2>getting your info...</h2>}
             </div>
-            <SpacingGrid changeComponent={this.changeComponent}/>
+            {/*<SpacingGrid changeComponent={this.changeComponent}/>*/}
+
+            <ThemeProvider theme={theme}>
+              <DashBoardGrid />
+            </ThemeProvider>
           </React.Fragment>
         )
     }
+
 
   }
 }

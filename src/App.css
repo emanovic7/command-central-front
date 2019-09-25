@@ -59,17 +59,6 @@ body {
 
 {/*ORGANIC CSS*/}
 
-.DisplayElementsContainer {
-  border: 10px;
-  width: 100%;
-  background: #525252;
-  padding: 10px;
-}
-
-.DisplayElementsContainer h1 {
-  text-align: center;
-}
-
 .Calendar {
   position: absolute;
   bottom: 8px;
@@ -83,11 +72,17 @@ body {
 
 .DisplayElementsContainer {
   position: absolute;
-  top: 8px;
-  right: 16px;
+  top: 20%;
+  right: 20px;
+  left: 20px;
   padding: 10px;
-  color: white;
+  background-color: #0ff2d3;
 }
+
+.DisplayElementsContainer h1 {
+  text-align: center;
+}
+
 
 .Buttons {
   position: absolute;

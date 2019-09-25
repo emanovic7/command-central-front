@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import { Switch, Route, withRouter } from 'react-router-dom';
+import { ThemeProvider } from '@material-ui/styles';
+import theme from './components/theme';
 
 
 //STYLING
@@ -14,6 +16,8 @@ import LoginPage from './components/user_pages/LoginPage';
 import ProfilePage from './components/user_pages/ProfilePage';
 import SignUpPage from './components/user_pages/SignUpPage';
 import SpacingGrid from './components/spacingGrid';
+import centeredGrid from './components/centeredGrid';
+import DashBoardGrid from './components/dashBoardGrid'
 
 //Containers
 import TasksContainer from './containers/tasksContainer';
@@ -66,7 +70,7 @@ class App extends Component {
 
 
   render(){
-    console.log(this.state)
+    // console.log(this.state)
     return(
       <Switch>
         <Route
@@ -78,27 +82,27 @@ class App extends Component {
       </Switch>
     )
 
-    // switch (this.state.page) {
-    //   case 'login':
-    //     return <LoginPage redirectPage={this.redirectPage}/>
-    //   case 'profile':
-    //     return (
-    //         <div className="">
-    //           <ProfilePage />
-    //           <SpacingGrid />
-    //         </div>
-    //       )
-    //
-    //   case 'signup':
-    //     return <SignUpPage />
-    //
-    //   default:
-    //     return <LoginPage />
-    // }
-  }
+  //   switch (this.state.page) {
+  //     case 'login':
+  //       return <LoginPage redirectPage={this.redirectPage}/>
+  //     case 'profile':
+  //       return (
+  //           <div className="">
+  //             <ProfilePage />
+  //             <SpacingGrid />
+  //           </div>
+  //         )
+  //
+  //     case 'signup':
+  //       return <SignUpPage />
+  //
+  //     default:
+  //       return <LoginPage />
+  //   }
+  // }
 
 
-
+}
 }
 
 

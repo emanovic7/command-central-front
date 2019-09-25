@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Weather from '../components/weather/Weather';
 import FiveDayWeather from '../components/weather/Weather';
+import WeatherBoard from '../components/weather/weatherBoard';
 
 
 
@@ -16,20 +17,21 @@ class WeatherContainer extends Component {
   }
 
 
-  // componentDidMount(){
-  //   fetch(`${'https://cors-anywhere.herokuapp.com/'}https://api.darksky.net/forecast/8a184aa8519f4a7c7742386e6cf699d8/42.3601,-71.0589?exclude=minutely,flags,hourly`)
-  //   .then(response => response.json())
-  //   .then(data => this.setState({
-  //     weather: data,
-  //     currently: data.currently,
-  //     daily: data.daily
-  //   }))
-  // }
+  componentDidMount(){
+    fetch(`${'https://cors-anywhere.herokuapp.com/'}https://api.darksky.net/forecast/8a184aa8519f4a7c7742386e6cf699d8/42.3601,-71.0589?exclude=minutely,flags,hourly`)
+    .then(response => response.json())
+    .then(data => this.setState({
+      weather: data,
+      currently: data.currently,
+      daily: data.daily
+    }))
+  }
 
   render(){
     // const fiveDayWeather = Object.entries(this.state.daily).map((weather, idx) =>
     //   <FiveDayWeather key={idx} weather={weather} />
     // )
+
 
     console.log(this.state)
     return(
