@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import News from '../components/news/News';
+import NewsBoard from '../components/news/newsBoard';
 
 
 
@@ -30,9 +31,13 @@ class NewsContainer extends Component {
       <News news={news}/>
     )
 
+    const freshNews = this.state.news.map(news =>
+      <NewsBoard news={news} />
+    )
+
     return(
       <div>
-        {allNews}
+        <NewsBoard news={this.state.news} />
       </div>
     )
   }
