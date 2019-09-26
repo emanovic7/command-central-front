@@ -65,7 +65,7 @@ const RestaurantsBoard = (props) => {
             <CardMedia
                 className={classes.media}
                 image={restaurants}
-                title="Weather"
+                title="restaurants"
               />
             <Grid item>
               <Typography className={classes.title} color="textSecondary">Current Reservations: 0</Typography>
