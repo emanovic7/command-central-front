@@ -1,5 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/styles';
+
 import { Grid } from '@material-ui/core';
 import WeatherBoard from '../components/weather/weatherBoard';
 import RestaurantsBoard from '../components/restaurants/restaurantsBoard';
@@ -32,7 +33,6 @@ const DashBoardGrid = () => {
           <DisplayElementsContainer />
         </Grid>
       </Grid>
-
 
 
       <Grid container spacing={4}>
