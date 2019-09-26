@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Restaurant from '../components/restaurants/restaurant'
+import Restaurant from '../components/restaurants/restaurant';
+import RestaurantsBoard from '../components/restaurants/restaurant';
 
 
 
@@ -52,6 +53,10 @@ class RestaurantsContainer extends Component {
       <Restaurant key={idx} restaurant={restaurant} />
     )
 
+    const freshRestaurants = this.state.restaurants.map((restaurant, idx) =>
+      <RestaurantsBoard restaurant={restaurant} />
+    )
+
     return(
       <div>
         <h2>Find something to eat</h2><br />
@@ -66,7 +71,8 @@ class RestaurantsContainer extends Component {
         </div>
 
         <div>
-          {AllRestaurants}
+          <Restaurant restaurant={this.state} />
+
         </div>
       </div>
     )

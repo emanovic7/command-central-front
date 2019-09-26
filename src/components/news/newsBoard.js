@@ -62,15 +62,6 @@ const NewsBoard = (props) => {
     newsItem
   )
 
-  // const Row = () => {
-  //  return props.news.map(news =>
-  //     (
-  //      <ListItem button >
-  //        <a target="_blank" and rel="noopener noreferrer" href={news.url}><ListItemText primary={news.title} /></a>
-  //      </ListItem>
-  //    )
-  //   )
-  // }
 
   function Row(){
     return (
