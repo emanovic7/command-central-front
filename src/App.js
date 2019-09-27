@@ -67,7 +67,9 @@ class App extends Component {
     })
   }
 
-
+  handleNewUser = (user) => {
+    console.log(user)
+  }
 
   render(){
     // console.log(this.state)
@@ -78,6 +80,9 @@ class App extends Component {
           render={routerProps => <ProfilePage {...routerProps} username={this.state.username} user_id={this.state.user_id}/>} />
 
         <Route path={"/login"} component={LoginPage} />
+        <Route
+          path={"/singup"}
+          render={routerProps => <SignUpPage {...routerProps} addUser={this.handleNewUser}/>} />
         <Route exact path={"/"} component={SignUpPage} />
       </Switch>
     )

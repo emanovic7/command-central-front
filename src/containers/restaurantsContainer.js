@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import Restaurant from '../components/restaurants/restaurant';
 import RestaurantsBoard from '../components/restaurants/restaurant';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+
 
 
 
@@ -25,7 +28,7 @@ class RestaurantsContainer extends Component {
         Authorization: `Bearer ${API_KEY}`
       },
       params: {
-        categories: category
+        categories: '',
       }
     })
     .then(response => response.json())
@@ -45,6 +48,12 @@ class RestaurantsContainer extends Component {
     this.handleRestaurantsFetch()
   }
 
+  handleClear = () => {
+    this.setState({
+      restaurants: []
+    })
+  }
+
 
 
   render(){
@@ -59,21 +68,43 @@ class RestaurantsContainer extends Component {
 
     return(
       <div>
-        <h2>Find something to eat</h2><br />
-        <div>
-          <form onSubmit={this.handleSubmit}>
-            <label>location</label>
-            <input type="text" name="location" value={this.state.location} onChange={this.handleChange}/><br />
-            <label>category</label>
-            <input type="text" name="category" value={this.state.category} onChange={this.handleChange}/><br />
-            <input type="submit" value="find grub" />
-          </form>
-        </div>
+      {this.state.restaurants.length === 0 ?
 
-        <div>
-          <Restaurant restaurant={this.state} />
 
+          <Form onSubmit={this.handleSubmit}>
+            <Form.Group controlId="formBasicEmail">
+              <Form.Label>Location</Form.Label>
+              <Form.Control type="text" placeholder="where are you?" name="location" value={this.state.location} onChange={this.handleChange}/>
+            </Form.Group>
+
+            <Form.Group controlId="formBasicEmail">
+              <Form.Label>Category</Form.Label>
+              <Form.Control type="text" placeholder="what are you looking for?" name="category" value={this.state.category} onChange={this.handleChange} />
+            </Form.Group>
+
+            <Button variant="primary" type="submit">
+              Submit
+            </Button>
+
+          </Form>
+
+          // <div>
+          //   <h2>Find something to eat</h2><br />
+          //   <form onSubmit={this.handleSubmit}>
+          //     <label>location</label>
+          //     <input type="text" name="location" value={this.state.location} onChange={this.handleChange}/><br />
+          //     <label>category</label>
+          //     <input type="text" name="category" value={this.state.category} onChange={this.handleChange}/><br />
+          //     <input type="submit" value="find grub" />
+          //   </form>
+          // </div>
+        :
+        <div>
+          <Restaurant handleClear={this.handleClear} restaurant={this.state} />
         </div>
+      }
+
+
       </div>
     )
   }

@@ -46,7 +46,7 @@ class ProfilePage extends Component {
   }
 
   render(){
-    console.log(this.state)
+    console.log("from profile page", this.props)
 
    switch (this.state.component) {
       case 'toDo':
@@ -70,7 +70,7 @@ class ProfilePage extends Component {
             {/*<SpacingGrid changeComponent={this.changeComponent}/>*/}
 
             <ThemeProvider theme={theme}>
-              <DashBoardGrid />
+              <DashBoardGrid user_id={this.props.user_id}/>
             </ThemeProvider>
           </React.Fragment>
         )

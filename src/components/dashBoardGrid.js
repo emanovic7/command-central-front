@@ -16,6 +16,7 @@ import CalendarContainer from '../containers/calendarContainer';
 import RestaurantsContainer from '../containers/restaurantsContainer';
 import RoutesContainer from '../containers/routesContainer';
 import WeatherContainer from '../containers/weatherContainer';
+import TasksContainer from '../containers/tasksContainer';
 
 
 // const useStyles = makeStyles(theme => ({
@@ -49,13 +50,14 @@ class DashBoardGrid extends Component {
 
 
   render(){
-    console.log("from dashBoardGrid", this.state.page)
+
+    console.log("from dashBoardGrid", this.props)
         return (
           <div className={styles.root}>
 
             <Grid container spacing={4}>
               <Grid item item lg={3} md={6} xl={3} xs={12}>
-                <CalendarContainer />
+                <TasksContainer user_id={this.props.user_id}/>
               </Grid>
               <Grid item item lg={8} md={12} xl={9} xs={12}>
                 {this.state.page === 'restaurants' ? <RestaurantsContainer /> :

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import TaskForm from '../tasks/taskForm'
 
 
 
@@ -31,10 +32,7 @@ class NewTask extends Component {
   render(){
     return(
       <div>
-        <form onSubmit={this.handleSubmit}>
-          <input type="text" placeholder="add task" name="note" value={this.state.note} onChange={this.handleChange} />
-          <input type="submit" />
-        </form>
+        <TaskForm />
       </div>
     )
   }

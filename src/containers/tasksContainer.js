@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Task from '../components/tasks/task';
 import NewTask from '../components/tasks/newTask';
+import TaskList from '../components/tasks/tasksList';
 
 
 
@@ -94,7 +95,7 @@ class TasksContainer extends Component {
 
 
   render(){
-
+    console.log("from taskContainer", this.props)
     //INCOMPLETE TASKS
     const userIncompleteTasks = this.state.tasks.filter(task =>
       (task.user_id === this.props.user_id)
@@ -107,7 +108,8 @@ class TasksContainer extends Component {
     return (
       <div>
         <h2 className="tasksHeader">tasks</h2>
-        <ul className="tasksList">{allTasks}</ul>
+        {/*<ul className="tasksList">{allTasks}</ul>*/}
+        <TaskList addTask={this.handleNewTask} tasks={this.state.tasks} user_id={this.props.user_id}/>
         <NewTask addTask={this.handleNewTask} user_id={this.props.user_id}/>
       </div>
     )

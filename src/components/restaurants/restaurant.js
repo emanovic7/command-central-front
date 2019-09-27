@@ -6,6 +6,7 @@ import GridListTileBar from '@material-ui/core/GridListTileBar';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import IconButton from '@material-ui/core/IconButton';
 import InfoIcon from '@material-ui/icons/Info';
+import BackspaceIcon from '@material-ui/icons/Backspace';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -29,26 +30,29 @@ const Restaurant = (props) => {
   const classes = useStyles();
   console.log("from restaurants", props.restaurant.category)
   return (
-    <div className={classes.root}>
-      <GridList cellHeight={180} className={classes.gridList}>
-          <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
-            <ListSubheader component="div">{props.restaurant.category}</ListSubheader>
-          </GridListTile>
-          {props.restaurant.restaurants.map(restaurant => (
-            <GridListTile key={restaurant.img}>
-              <img src={restaurant.image_url} alt={restaurant.title} />
-              <GridListTileBar
-                title={restaurant.name}
-                subtitle={<span>name: {restaurant.phone}</span>}
-                actionIcon={
-                  <IconButton aria-label={`info about ${restaurant.rating}`} className={classes.icon}>
-                    <InfoIcon />
-                  </IconButton>
-                }
-              />
+    <div>
+      <div className={classes.root}>
+        <GridList cellHeight={180} className={classes.gridList}>
+            <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
+              <ListSubheader component="div">showing results for {(props.restaurant.category).toUpperCase()} in {(props.restaurant.location).toUpperCase()}</ListSubheader>
             </GridListTile>
-          ))}
-        </GridList>
+            {props.restaurant.restaurants.map(restaurant => (
+              <GridListTile key={restaurant.img}>
+                <img src={restaurant.image_url} alt={restaurant.title} />
+                <GridListTileBar
+                  title={restaurant.name}
+                  subtitle={<span>name: {restaurant.phone}</span>}
+                  actionIcon={
+                    <IconButton aria-label={`info about ${restaurant.rating}`} className={classes.icon}>
+                      <InfoIcon />
+                    </IconButton>
+                  }
+                />
+              </GridListTile>
+            ))}
+          </GridList>
+      </div>
+      <BackspaceIcon color="primary" fontSize="large" onClick={props.handleClear} />
     </div>
   )
 }
