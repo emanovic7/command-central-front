@@ -13,7 +13,29 @@ body {
 .App {
   display: flex;
   height: 100vh;
+  background-image: url("./images/background4.gif")
 }
+
+.Homepage {
+  background-image: url("./images/background4.gif");
+  background-color: #cccccc;
+  height: 800px;
+
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.Homepage-text {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-family: verdana;
+}
+
 
 .Sidebar {
   border: 4px solid red;

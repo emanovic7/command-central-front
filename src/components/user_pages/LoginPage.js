@@ -53,14 +53,14 @@ class LoginPage extends Component {
 
   render(){
     return(
-      <div>
+      <div className="Homepage">
       <h2>Please Login!</h2>
         <form onSubmit={this.handleSubmit}>
           <label>Username</label>
-          <input tyep="text" name="username" value={this.state.username} onChange={this.handleChange} /><br />
+          <input type="text" name="username" value={this.state.username} onChange={this.handleChange} /><br />
           <label>Password</label>
-          <input type="password" name="password" value={this.state.password} onChange={this.handleChange} /><br />
-          <input type="submit" value="SUBMIT" />
+          <input type="text" name="password" value={this.state.password} onChange={this.handleChange} /><br />
+          <input type="submit" value="log in" />
         </form>
       </div>
     )

@@ -10,7 +10,7 @@ class SignUpPage extends Component {
   constructor(){
     super()
     this.state = {
-      "fullname": '',
+      "name": '',
       "username": '',
       "password": ''
     }
@@ -29,24 +29,19 @@ class SignUpPage extends Component {
 
   render(){
       console.log("from singup page",this.props)
+      console.log("from singup page",this.state)
     return(
 
-      <div>
+      <div className="Homepage">
         <Form onSubmit={this.handleSubmit}>
-          <Form.Group controlId="formBasicEmail">
-            <Form.Label>Full Name</Form.Label>
-            <Form.Control type="text" placeholder="Enter your name" onChange={this.handleChange}/>
-          </Form.Group>
+          <label>full name</label>
+          <input type="text" name="name" value={this.state.name} onChange={this.handleChange}/><br />
 
-          <Form.Group controlId="formBasicEmail">
-            <Form.Label>Username</Form.Label>
-            <Form.Control type="text" placeholder="pick a username" onChange={this.handleChange}/>
-          </Form.Group>
+          <label>username</label>
+          <input type="text" name="username" value={this.state.username} onChange={this.handleChange}/><br />
 
-          <Form.Group controlId="formBasicEmail">
-            <Form.Label>Password</Form.Label>
-            <Form.Control type="password" placeholder="password" onChange={this.handleChange}/>
-          </Form.Group>
+          <label>password</label>
+          <input type="password" name="password" value={this.state.password} onChange={this.handleChange}/><br />
 
           <Button variant="primary" type="submit">
             Submit

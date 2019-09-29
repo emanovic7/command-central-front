@@ -15,6 +15,7 @@ import Container from '@material-ui/core/Container';
 import LoginPage from './components/user_pages/LoginPage';
 import ProfilePage from './components/user_pages/ProfilePage';
 import SignUpPage from './components/user_pages/SignUpPage';
+import HomePage from './components/user_pages/homePage'
 import SpacingGrid from './components/spacingGrid';
 import centeredGrid from './components/centeredGrid';
 import DashBoardGrid from './components/dashBoardGrid'
@@ -56,7 +57,7 @@ class App extends Component {
     )
   }
   else {
-    this.props.history.push('/login')
+    this.props.history.push('/')
   }
 }
 
@@ -68,22 +69,37 @@ class App extends Component {
   }
 
   handleNewUser = (user) => {
-    console.log(user)
+    let name = user.name;
+    let username = user.username;
+    let password = user.password;
+
+    fetch('http://localhost:3000/users', {
+      method: "POST",
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        fullname: name,
+        username: username,
+        password: password
+      })
+    })
+    .then(response => response.json)
+    .then(this.props.history.push('/profile'))
   }
 
   render(){
     // console.log(this.state)
     return(
       <Switch>
-        <Route
-          path={"/profile"}
+          <Route
+          path={'/profile'}
           render={routerProps => <ProfilePage {...routerProps} username={this.state.username} user_id={this.state.user_id}/>} />
-
-        <Route path={"/login"} component={LoginPage} />
-        <Route
-          path={"/singup"}
-          render={routerProps => <SignUpPage {...routerProps} addUser={this.handleNewUser}/>} />
-        <Route exact path={"/"} component={SignUpPage} />
+          <Route path={'/login'} component={LoginPage} />
+          <Route path={'/signup'}
+          render={routerProps => <SignUpPage {...routerProps} addUser={this.handleNewUser} />} />
+          <Route path={'/'} component={HomePage} />
       </Switch>
     )
 
