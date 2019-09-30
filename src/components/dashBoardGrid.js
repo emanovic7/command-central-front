@@ -18,6 +18,7 @@ import RoutesContainer from '../containers/routesContainer';
 import WeatherContainer from '../containers/weatherContainer';
 import TasksContainer from '../containers/tasksContainer';
 import EventsContainer from '../containers/eventsContainer';
+import NavBarContainer from '../containers/navBarContainer';
 
 //IMAGES
 import background from '../images/background4.gif'
@@ -59,14 +60,12 @@ class DashBoardGrid extends Component {
     console.log("from dashBoardGrid", this.props)
         return (
           <div className={styles.root}>
-
+          
             <Grid container spacing={4}>
               <Grid item item lg={3} md={6} xl={3} xs={12}>
                 <TasksContainer user_id={this.props.user_id}/>
               </Grid>
-              <Grid item item lg={3} md={6} xl={3} xs={12}>
-                <EventsContainer user_id={this.props.user_id}/>
-              </Grid>
+
               <Grid item item lg={8} md={12} xl={9} xs={12}>
                 {this.state.page === 'restaurants' ? <RestaurantsContainer /> :
                 this.state.page === 'Weather' ? <WeatherContainer /> :

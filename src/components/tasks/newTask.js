@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import TaskForm from '../tasks/taskForm'
+import TaskForm from '../tasks/taskForm';
+import { List, Icon, Input, Button } from 'semantic-ui-react'
 
 
 
@@ -30,9 +31,13 @@ class NewTask extends Component {
   }
 
   render(){
+    console.log("from newTask", this.props)
     return(
       <div>
-        <TaskForm />
+        <form onSubmit={this.handleSubmit}>
+          <Input type="text" value={this.state.note} name="note" placeholder="type here..." onChange={this.handleChange}/>
+          <Input type="submit">Add Task</Input>
+        </form>
       </div>
     )
   }

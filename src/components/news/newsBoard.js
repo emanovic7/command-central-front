@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
 import ListItem from '@material-ui/core/ListItem';
+import InputBase from '@material-ui/core/InputBase';
 import ListItemText from '@material-ui/core/ListItemText';
 import { FixedSizeList } from 'react-window';
 import { Card, CardContent, Grid, Typography, Avatar, CardMedia } from '@material-ui/core';
@@ -80,6 +81,10 @@ const NewsBoard = (props) => {
 
     <Card>
       <CardContent className={classes.root}>
+      <InputBase
+        className={classes.input}
+        placeholder="Search News"
+      />
         <div >
           <FixedSizeList height={400} width={1400} itemSize={20} itemCount={1}>
             {Row}

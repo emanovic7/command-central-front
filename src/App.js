@@ -27,6 +27,7 @@ import WeatherContainer from './containers/weatherContainer';
 import CalendarContainer from './containers/calendarContainer';
 import NavBarContainer from './containers/navBarContainer';
 import RestaurantsContainer from './containers/restaurantsContainer';
+import EventsContainer from './containers/eventsContainer';
 
 
 
@@ -61,6 +62,12 @@ class App extends Component {
   }
 }
 
+  //LOGOUT
+  handleLogout = () => {
+    localStorage.clear()
+    this.props.history.push('/')
+  }
+
   //SET SELECTED PAGE
   redirectPage = (page) => {
     this.setState({
@@ -90,17 +97,22 @@ class App extends Component {
   }
 
   render(){
-    // console.log(this.state)
+
     return(
-      <Switch>
-          <Route
-          path={'/profile'}
-          render={routerProps => <ProfilePage {...routerProps} username={this.state.username} user_id={this.state.user_id}/>} />
-          <Route path={'/login'} component={LoginPage} />
-          <Route path={'/signup'}
-          render={routerProps => <SignUpPage {...routerProps} addUser={this.handleNewUser} />} />
-          <Route path={'/'} component={HomePage} />
-      </Switch>
+      <div>
+      <NavBarContainer username={this.state.username} logout={this.handleLogout}/>
+        <Switch>
+            <Route
+            path={'/profile'}
+            render={routerProps => <ProfilePage {...routerProps} username={this.state.username} user_id={this.state.user_id}/>} />
+            <Route path={'/login'} component={LoginPage} />
+            <Route path={'/signup'}
+            render={routerProps => <SignUpPage {...routerProps} addUser={this.handleNewUser} />} />
+            <Route path={'/events'} component={EventsContainer} />
+            <Route path={'/tasks'} component={TasksContainer} />
+            <Route path={'/'} component={HomePage} />
+        </Switch>
+      </div>
     )
 
   //   switch (this.state.page) {

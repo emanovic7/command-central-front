@@ -88,9 +88,6 @@ body {
   padding: 10px
 }
 
-.TasksContainer {
-  padding: 10px;
-}
 
 .DisplayElementsContainer {
   position: absolute;
@@ -117,6 +114,53 @@ body {
   color: red;
 }
 
+/*TASKS*/
+.TasksContainer {
+  display: block;
+  width: 400px;
+  margin: 100px auto 0;
+  background: #fff;
+  color: #333;
+  font-family: Lato, sans-serif;
+}
+
+.TasksUl {
+  margin: 0;
+  padding: 0;
+}
+
+.TasksLi {
+  float: left;
+}
+
+.Tasks, h3 {
+
+}
+
+.TasksLi, h3 {
+  clear:both;
+  list-style:none;
+}
+
+.completedtask {
+  text-decoration: line-through;
+  color: red;
+}
+
+.TaskInput {
+  outline: none;
+  background: none;
+  border: 0px;
+  color: #888;
+  font-size: 15px;
+  width: 60px;
+  margin: 10px 0 0;
+  font-family: Lato, sans-serif;
+  cursor: pointer;
+}
+
+
+/*TASKS*/
 
 @keyframes App-logo-spin {
   from {

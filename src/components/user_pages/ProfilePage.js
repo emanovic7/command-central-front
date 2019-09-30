@@ -20,6 +20,7 @@ import RestaurantsContainer from '../../containers/restaurantsContainer';
 import WeatherContainer from '../../containers/weatherContainer';
 import RoutesContainer from '../../containers/routesContainer';
 import DisplayElementsContainer from '../../containers/displayElementsContainer';
+import NavBarContainer from '../../containers/navBarContainer';
 
 class ProfilePage extends Component {
 
@@ -33,12 +34,6 @@ class ProfilePage extends Component {
   }
 
 
-
-  handleLogout = () => {
-    localStorage.clear()
-    this.props.history.push('/login')
-  }
-
   changeComponent = (component) => {
     this.setState({
       component: component
@@ -46,35 +41,28 @@ class ProfilePage extends Component {
   }
 
   render(){
-    console.log("from profile page", this.props)
 
-   switch (this.state.component) {
-      case 'toDo':
-        return <TasksContainer user_id={this.props.user_id} username={this.props.username} />
-      case 'restaurants':
-        return <RestaurantsContainer user_id={this.props.user_id} username={this.props.username} />
-      case 'weather':
-        return <WeatherContainer />
-      case 'maps':
-        return <RoutesContainer />
+     switch (this.state.component) {
+        case 'toDo':
+          return <TasksContainer user_id={this.props.user_id} username={this.props.username} />
+        case 'restaurants':
+          return <RestaurantsContainer user_id={this.props.user_id} username={this.props.username} />
+        case 'weather':
+          return <WeatherContainer />
+        case 'maps':
+          return <RoutesContainer />
 
-      default:
-        return (
+        default:
+          return (
 
 
-          <React.Fragment>
-            <div>
-              <button onClick={this.handleLogout}>Logout</button>
-              {this.props.username ? <h2>Welcome {this.props.username}!</h2> : <h2>getting your info...</h2>}
-            </div>
-            {/*<SpacingGrid changeComponent={this.changeComponent}/>*/}
-
-            <ThemeProvider theme={theme}>
-              <DashBoardGrid user_id={this.props.user_id}/>
-            </ThemeProvider>
-          </React.Fragment>
-        )
-    }
+            <React.Fragment>
+              <ThemeProvider theme={theme}>
+                <DashBoardGrid user_id={this.props.user_id} username={this.props.username} logout={this.handleLogout}/>
+              </ThemeProvider>
+            </React.Fragment>
+          )
+      }
 
 
   }

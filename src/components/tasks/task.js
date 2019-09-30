@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
-
+import { List } from 'semantic-ui-react'
+import '../../Tasks.css';
 
 const Task = (props) => {
 
   return (
 
-    <div>
+    <div >
       {props.task.done === true
-        ?  <li className="completedtask">{props.task.note}<button onClick={() => props.handleDelete(props.task)}>X</button></li>
-        : <li onDoubleClick={() => props.handleComplete(props.task)}>{props.task.note} </li>
+        ?  <List.Item className="completedtask">{props.task.note}<button onClick={() => props.handleDelete(props.task)}>X</button></List.Item>
+        : <List.Item onDoubleClick={() => props.handleComplete(props.task)}>{props.task.note} </List.Item>
       }
     </div>
   )

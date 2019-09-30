@@ -5,6 +5,7 @@ import NewsBoard from '../components/news/newsBoard';
 
 
 
+
 class NewsContainer extends Component {
 
   constructor(){
