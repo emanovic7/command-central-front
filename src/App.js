@@ -28,6 +28,7 @@ import CalendarContainer from './containers/calendarContainer';
 import NavBarContainer from './containers/navBarContainer';
 import RestaurantsContainer from './containers/restaurantsContainer';
 import EventsContainer from './containers/eventsContainer';
+import ReservationsContainer from './containers/reservationsContainer';
 
 
 
@@ -109,6 +110,7 @@ class App extends Component {
             <Route path={'/signup'}
             render={routerProps => <SignUpPage {...routerProps} addUser={this.handleNewUser} />} />
             <Route path={'/events'} component={EventsContainer} />
+            <Route path={'/reservations'} component={ReservationsContainer} />
             <Route path={'/tasks'} component={TasksContainer} />
             <Route path={'/'} component={HomePage} />
         </Switch>
