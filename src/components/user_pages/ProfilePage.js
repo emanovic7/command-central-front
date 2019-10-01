@@ -41,12 +41,12 @@ class ProfilePage extends Component {
   }
 
   render(){
-
+    console.log("from profile", this.props)
      switch (this.state.component) {
         case 'toDo':
           return <TasksContainer user_id={this.props.user_id} username={this.props.username} />
         case 'restaurants':
-          return <RestaurantsContainer user_id={this.props.user_id} username={this.props.username} />
+          return <RestaurantsContainer user_id={this.props.user_id} username={this.props.username} addFavorite={(favorite) => this.props.addFavorite(favorite)} />
         case 'weather':
           return <WeatherContainer />
         case 'maps':
@@ -58,7 +58,7 @@ class ProfilePage extends Component {
 
             <React.Fragment>
               <ThemeProvider theme={theme}>
-                <DashBoardGrid user_id={this.props.user_id} username={this.props.username} logout={this.handleLogout}/>
+                <DashBoardGrid user_id={this.props.user_id} username={this.props.username} logout={this.handleLogout} addFavorite={(favorite) => this.props.addFavorite(favorite)} reserveRestaurant={(restaurant) => this.props.reserveRestaurant(restaurant)}/>
               </ThemeProvider>
             </React.Fragment>
           )

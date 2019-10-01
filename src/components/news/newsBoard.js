@@ -85,6 +85,7 @@ const NewsBoard = (props) => {
         className={classes.input}
         placeholder="Search News"
       />
+      
         <div >
           <FixedSizeList height={400} width={1400} itemSize={20} itemCount={1}>
             {Row}

@@ -29,6 +29,7 @@ import NavBarContainer from './containers/navBarContainer';
 import RestaurantsContainer from './containers/restaurantsContainer';
 import EventsContainer from './containers/eventsContainer';
 import ReservationsContainer from './containers/reservationsContainer';
+import FavoritesContainer from './containers/favoritesContainer';
 
 
 
@@ -39,7 +40,8 @@ class App extends Component {
     super()
     this.state = {
       username: '',
-      user_id: ''
+      user_id: '',
+      favorites: []
     }
   }
 
@@ -97,6 +99,52 @@ class App extends Component {
     .then(this.props.history.push('/profile'))
   }
 
+  addFavorite = (favorite) => {
+
+    fetch('http://localhost:3000/favorites',{
+      method: "POST",
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        name: favorite.name,
+        phone: favorite.phone,
+        city: favorite.location.city,
+        user_id: this.state.user_id
+      })
+    })
+    .then(response => response.json())
+    .then(alert("Added to favorites"))
+  }
+
+
+  reserveRestaurant = (restaurant) => {
+
+    fetch('http://localhost:3000/reservations', {
+      method: "POST",
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        title: restaurant.name,
+        venue: restaurant.location.city,
+        date: "10/01/2019",
+        time: '7:00',
+        user_id: this.state.user_id
+      })
+    })
+    .then(response => response.json())
+    .then(alert("Reservation made!"))
+  }
+
+  // t.string "title"
+  //   t.string "venue"
+  //   t.date "date"
+  //   t.time "time"
+  //   t.integer "user_id"
+
   render(){
 
     return(
@@ -105,12 +153,15 @@ class App extends Component {
         <Switch>
             <Route
             path={'/profile'}
-            render={routerProps => <ProfilePage {...routerProps} username={this.state.username} user_id={this.state.user_id}/>} />
+            render={(routerProps, props) => <ProfilePage {...routerProps} username={this.state.username} user_id={this.state.user_id} addFavorite={this.addFavorite} reserveRestaurant={this.reserveRestaurant}/>} />
             <Route path={'/login'} component={LoginPage} />
             <Route path={'/signup'}
             render={routerProps => <SignUpPage {...routerProps} addUser={this.handleNewUser} />} />
             <Route path={'/events'} component={EventsContainer} />
             <Route path={'/reservations'} component={ReservationsContainer} />
+            <Route
+            path={'/favorites'}
+            render={routerProps => <FavoritesContainer {...routerProps} username={this.state.username} user_id={this.state.user_id}/>} />
             <Route path={'/tasks'} component={TasksContainer} />
             <Route path={'/'} component={HomePage} />
         </Switch>

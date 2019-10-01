@@ -100,7 +100,7 @@ class RestaurantsContainer extends Component {
           // </div>
         :
         <div>
-          <Restaurant handleClear={this.handleClear} restaurant={this.state} />
+          <Restaurant handleClear={this.handleClear} restaurant={this.state} addFavorite={(favorite) => this.props.addFavorite(favorite)} reserveRestaurant={(restaurant) => this.props.reserveRestaurant(restaurant)}/>
         </div>
       }
 

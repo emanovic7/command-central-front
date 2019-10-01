@@ -44,8 +44,13 @@ const Restaurant = (props) => {
     setAnchorEl(null);
   };
 
-  const handleSelect = (restaurant) => {
-    console.log(restaurant);
+  const handleAddFavorite = (favorite) => {
+    props.addFavorite(favorite);
+    handleClose();
+  }
+
+  const handleReservation = (restaurant) => {
+    props.reserveRestaurant(restaurant);
     handleClose();
   }
 
@@ -74,8 +79,8 @@ const Restaurant = (props) => {
                         open={Boolean(anchorEl)}
                         onClose={handleClose}
                       >
-                        <MenuItem onClick={() => handleSelect(restaurant)}>Reserve</MenuItem>
-                        <MenuItem onClick={() => handleSelect(restaurant)}>Favorite</MenuItem>
+                        <MenuItem onClick={() => handleReservation(restaurant)}>Reserve</MenuItem>
+                        <MenuItem onClick={() => handleAddFavorite(restaurant)}>Favorite</MenuItem>
                     </Menu>
                     </IconButton>
                   }

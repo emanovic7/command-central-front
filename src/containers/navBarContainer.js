@@ -25,7 +25,7 @@ class NavBarContainer extends Component {
             <Nav.Link href="/profile">{this.props.username}</Nav.Link>
             <Nav.Link href="/events">Calendar</Nav.Link>
             <Nav.Link href="/tasks">Tasks</Nav.Link>
-            <Nav.Link href="/tasks">Saved</Nav.Link>
+            <Nav.Link href="/favorites">Favorites</Nav.Link>
             <Nav.Link href="/reservations">Reservations</Nav.Link>
           </Nav>
           <Nav>

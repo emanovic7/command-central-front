@@ -60,14 +60,14 @@ class DashBoardGrid extends Component {
     console.log("from dashBoardGrid", this.props)
         return (
           <div className={styles.root}>
-          
+
             <Grid container spacing={4}>
               <Grid item item lg={3} md={6} xl={3} xs={12}>
                 <TasksContainer user_id={this.props.user_id}/>
               </Grid>
 
               <Grid item item lg={8} md={12} xl={9} xs={12}>
-                {this.state.page === 'restaurants' ? <RestaurantsContainer /> :
+                {this.state.page === 'restaurants' ? <RestaurantsContainer addFavorite={(favorite) => this.props.addFavorite(favorite)} reserveRestaurant={(restaurant) => this.props.reserveRestaurant(restaurant)}/> :
                 this.state.page === 'Weather' ? <WeatherContainer /> :
                 this.state.page === "routes"  ? <RoutesContainer />
                 :<DisplayElementsContainer />
