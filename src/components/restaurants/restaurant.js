@@ -7,6 +7,8 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 import IconButton from '@material-ui/core/IconButton';
 import InfoIcon from '@material-ui/icons/Info';
 import BackspaceIcon from '@material-ui/icons/Backspace';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -23,28 +25,58 @@ const useStyles = makeStyles(theme => ({
   icon: {
     color: 'rgba(255, 255, 255, 0.54)',
   },
+  resultsH3: {
+    color: 'red'
+  }
 }));
 
 
 const Restaurant = (props) => {
   const classes = useStyles();
-  console.log("from restaurants", props.restaurant.category)
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = event => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleSelect = (restaurant) => {
+    console.log(restaurant);
+    handleClose();
+  }
+
+
+
   return (
     <div>
       <div className={classes.root}>
         <GridList cellHeight={180} className={classes.gridList}>
             <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
-              <ListSubheader component="div">showing results for {(props.restaurant.category).toUpperCase()} in {(props.restaurant.location).toUpperCase()}</ListSubheader>
+              <ListSubheader component="div"><h3 className={classes.resultsH3}>showing results for {(props.restaurant.term).toUpperCase()} in {(props.restaurant.location).toUpperCase()}</h3></ListSubheader>
             </GridListTile>
             {props.restaurant.restaurants.map(restaurant => (
               <GridListTile key={restaurant.img}>
                 <img src={restaurant.image_url} alt={restaurant.title} />
                 <GridListTileBar
                   title={restaurant.name}
-                  subtitle={<span>name: {restaurant.phone}</span>}
+                  subtitle={<span>{restaurant.phone} - {restaurant.price}</span>}
                   actionIcon={
                     <IconButton aria-label={`info about ${restaurant.rating}`} className={classes.icon}>
-                      <InfoIcon />
+                      <InfoIcon onClick={handleClick}/>
+                      <Menu
+                        id="simple-menu"
+                        anchorEl={anchorEl}
+                        keepMounted
+                        open={Boolean(anchorEl)}
+                        onClose={handleClose}
+                      >
+                        <MenuItem onClick={() => handleSelect(restaurant)}>Reserve</MenuItem>
+                        <MenuItem onClick={() => handleSelect(restaurant)}>Favorite</MenuItem>
+                    </Menu>
                     </IconButton>
                   }
                 />

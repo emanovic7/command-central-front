@@ -14,21 +14,19 @@ class RestaurantsContainer extends Component {
     this.state = {
       restaurants: [],
       location: '',
-      category: ''
+      category: '',
+      term: ''
     }
   }
 
 
   handleRestaurantsFetch = () => {
     const API_KEY = "9wVGFz42pdKJ8LvcERXRPwdKw-Z2cT5v--4Uh9HxIGZ9HjBh2d4G_oqxXmGgCT5yhfatqwIiFRIf_GYZ3xmaqtHO8yhhOGCeVkGNClqrKBBjd__EfIVcW6kH6-yAXXYx";
-    let locationSearched = this.state.location
-    let category = this.state.category
-    fetch(`${'https://cors-anywhere.herokuapp.com/'}https://api.yelp.com/v3/businesses/search?location=${locationSearched}`, {
+    let locationSearched = this.state.location;
+    let term = this.state.term;
+    fetch(`${'https://cors-anywhere.herokuapp.com/'}https://api.yelp.com/v3/businesses/search?location=${locationSearched}&term=${term}`, {
       headers: {
         Authorization: `Bearer ${API_KEY}`
-      },
-      params: {
-        categories: '',
       }
     })
     .then(response => response.json())
@@ -57,7 +55,7 @@ class RestaurantsContainer extends Component {
 
 
   render(){
-    console.log("restaurants from state", this.state.restaurants)
+
     const AllRestaurants = this.state.restaurants.map((restaurant, idx) =>
       <Restaurant key={idx} restaurant={restaurant} />
     )
@@ -67,19 +65,21 @@ class RestaurantsContainer extends Component {
     )
 
     return(
+
       <div>
+      <h1>Restaurants</h1><br />
       {this.state.restaurants.length === 0 ?
 
 
           <Form onSubmit={this.handleSubmit}>
-            <Form.Group controlId="formBasicEmail">
+            <Form.Group >
               <Form.Label>Location</Form.Label>
-              <Form.Control type="text" placeholder="where are you?" name="location" value={this.state.location} onChange={this.handleChange}/>
+              <Form.Control type="text" placeholder="eg. chelsea new york" name="location" value={this.state.location} onChange={this.handleChange}/>
             </Form.Group>
 
-            <Form.Group controlId="formBasicEmail">
-              <Form.Label>Category</Form.Label>
-              <Form.Control type="text" placeholder="what are you looking for?" name="category" value={this.state.category} onChange={this.handleChange} />
+            <Form.Group >
+              <Form.Label>Term</Form.Label>
+              <Form.Control type="text" placeholder="eg. vegan" name="term" value={this.state.term} onChange={this.handleChange} />
             </Form.Group>
 
             <Button variant="primary" type="submit">
