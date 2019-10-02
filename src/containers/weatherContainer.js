@@ -1,4 +1,9 @@
 import React, { Component } from 'react';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row'
+
+
+//COMPONENTS
 import Weather from '../components/weather/Weather';
 import FiveDayWeather from '../components/weather/fiveDay';
 import WeatherBoard from '../components/weather/weatherBoard';
@@ -27,6 +32,8 @@ class WeatherContainer extends Component {
     }))
   }
 
+
+
   render(){
     console.log(this.state.weather)
     console.log(this.state.daily)
@@ -37,15 +44,19 @@ class WeatherContainer extends Component {
     )
     console.log(fiveDayForecast)
     return(
-      <div>
-        <h2>weather</h2>
-
-        <Weather
-          currently={this.state.currently}
-        />
-        <h2>Five Day Forecast</h2>
-
-        <div><FiveDayWeather weather={this.state.daily} /></div>
+      <div className="WeatherContainer">
+        <Container>
+        <h2 align="center">weather</h2>
+          <Row>
+            <Weather
+              currently={this.state.currently}
+            />
+          </Row>
+        <h2 align="center">five day forecast</h2><br />
+          <Row>
+            <div><FiveDayWeather weather={this.state.daily} /></div>
+          </Row>
+        </Container>
       </div>
     )
   }

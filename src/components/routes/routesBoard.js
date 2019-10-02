@@ -6,6 +6,7 @@ import { Card, CardContent, Grid, Typography, Avatar, CardMedia } from '@materia
 // import AcUnitIcon from '@material-ui/icons/AcUnit'
 
 import maps from '../../images/maps.jpg';
+import transitGif from '../../images/transitGif.gif';
 
 
 const useStyles = makeStyles(theme => ({
@@ -64,7 +65,7 @@ const MapsBoard = (props) => {
             </Grid>
             <CardMedia
                 className={classes.media}
-                image={maps}
+                image={transitGif}
                 title="routes"
               />
             <Grid item>

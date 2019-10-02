@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import Routes from '../components/routes/routes'
+import Routes from '../components/routes/routes';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 
 
 
@@ -64,11 +66,21 @@ class RoutesContainer extends Component {
             <option value="bike">Bike</option>
             <option value="drive">Drive</option>
           </select><br />
-          <form onSubmit={this.handleSubmit}>
-            <input type="text" placeholder="starting point" name="start" value={this.state.start} onChange={this.handleChange}/><br />
-            <input type="text" placeholder="ending point" name="end" value={this.state.end} onChange={this.handleChange}/><br />
-            <input type="submit" value="get directions" />
-          </form>
+
+          <Form onSubmit={this.handleSubmit}>
+            <Form.Group controlId="formBasicEmail">
+              <Form.Control type="text" placeholder="starting point" name="start" value={this.state.start} onChange={this.handleChange} />
+            </Form.Group>
+
+            <Form.Group controlId="formBasicEmail">
+              <Form.Control type="text" placeholder="ending point" name="end" value={this.state.end} onChange={this.handleChange} />
+            </Form.Group>
+
+            <Button variant="primary" type="submit">
+              Submit
+            </Button>
+
+          </Form>
         </div>
 
         <div>
@@ -78,9 +90,14 @@ class RoutesContainer extends Component {
     )
   }
 
-
-
 }
 
 
 export default RoutesContainer;
+
+
+// <form onSubmit={this.handleSubmit}>
+//   <input type="text" placeholder="starting point" name="start" value={this.state.start} onChange={this.handleChange}/><br />
+//   <input type="text" placeholder="ending point" name="end" value={this.state.end} onChange={this.handleChange}/><br />
+//   <input type="submit" value="get directions" />
+// </form>

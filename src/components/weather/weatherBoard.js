@@ -2,11 +2,12 @@ import React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
+import Paper from '@material-ui/core/Paper';
 import { Card, CardContent, Grid, Typography, Avatar, CardMedia } from '@material-ui/core';
 // import AcUnitIcon from '@material-ui/icons/AcUnit'
 
 import weather from '../../images/weather.jpg';
-
+import weatherGif from '../../images/weatherGif.txt';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -15,7 +16,7 @@ const useStyles = makeStyles(theme => ({
   content: {
     alignItems: 'center',
     display: 'flex',
-    backgroundImage: `url(${weather})`
+    backgroundImage: `url(${weatherGif})`
   },
   title: {
     fontWeight: 700
@@ -64,7 +65,7 @@ const WeatherBoard = (props) => {
             </Grid>
             <CardMedia
                 className={classes.media}
-                image={weather}
+                image={weatherGif}
                 title="Weather"
               />
             <Grid item>

@@ -67,7 +67,7 @@ class RestaurantsContainer extends Component {
     return(
 
       <div>
-      <h1>Restaurants</h1><br />
+      <h1>food and places</h1><br />
       {this.state.restaurants.length === 0 ?
 
 
@@ -79,7 +79,7 @@ class RestaurantsContainer extends Component {
 
             <Form.Group >
               <Form.Label>Term</Form.Label>
-              <Form.Control type="text" placeholder="eg. vegan" name="term" value={this.state.term} onChange={this.handleChange} />
+              <Form.Control type="text" placeholder="eg. vegan, comedy" name="term" value={this.state.term} onChange={this.handleChange} />
             </Form.Group>
 
             <Button variant="primary" type="submit">

@@ -159,6 +159,11 @@ body {
   cursor: pointer;
 }
 
+.WeatherContainer {
+  display: block;
+  
+}
+
 
 /*TASKS*/
 

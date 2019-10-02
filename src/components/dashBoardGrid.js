@@ -57,7 +57,6 @@ class DashBoardGrid extends Component {
 
   render(){
 
-    console.log("from dashBoardGrid", this.props)
         return (
           <div className={styles.root}>
 

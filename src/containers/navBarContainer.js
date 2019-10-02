@@ -13,7 +13,7 @@ class NavBarContainer extends Component {
   }
 
   render(){
-    console.log("from navbar", this.props)
+    
     return(
       <div className="NavBar">
         <Navbar sticky="top" collapseOnSelect expland="lg" bg="primary" variant="dark">

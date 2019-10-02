@@ -31,7 +31,6 @@ class NewTask extends Component {
   }
 
   render(){
-    console.log("from newTask", this.props)
     return(
       <div>
         <form onSubmit={this.handleSubmit}>

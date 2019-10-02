@@ -41,7 +41,7 @@ class ProfilePage extends Component {
   }
 
   render(){
-    console.log("from profile", this.props)
+  
      switch (this.state.component) {
         case 'toDo':
           return <TasksContainer user_id={this.props.user_id} username={this.props.username} />
