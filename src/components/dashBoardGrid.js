@@ -20,6 +20,8 @@ import WeatherContainer from '../containers/weatherContainer';
 import TasksContainer from '../containers/tasksContainer';
 import EventsContainer from '../containers/eventsContainer';
 import NavBarContainer from '../containers/navBarContainer';
+import SportsContainer from '../containers/sportsContainer';
+import StocksContainer from '../containers/stocksContainer';
 
 //IMAGES
 import background from '../images/background4.gif'
@@ -69,8 +71,10 @@ class DashBoardGrid extends Component {
               <Grid item item lg={8} md={12} xl={9} xs={12}>
                 {this.state.page === 'restaurants' ? <RestaurantsContainer addFavorite={(favorite) => this.props.addFavorite(favorite)} reserveRestaurant={(restaurant) => this.props.reserveRestaurant(restaurant)}/> :
                 this.state.page === 'Weather' ? <WeatherContainer /> :
-                this.state.page === "routes"  ? <RoutesContainer />
-                :<DisplayElementsContainer />
+                this.state.page === "routes"  ? <RoutesContainer /> :
+                this.state.page === "sports"  ? <SportsContainer /> :
+                this.state.page === "stocks"  ? <StocksContainer /> :
+                <DisplayElementsContainer />
                 }
               </Grid>
             </Grid>
