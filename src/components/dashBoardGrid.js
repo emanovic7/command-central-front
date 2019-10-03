@@ -8,7 +8,8 @@ import WeatherBoard from '../components/weather/weatherBoard';
 import RestaurantsBoard from '../components/restaurants/restaurantsBoard';
 import MapsBoard from '../components/routes/routesBoard';
 import TasksBoard from '../components/tasks/tasksBoard';
-
+import SportsBoard from '../components/sports/sportsBoard';
+import StocksBoard from '../components/stocks/stocksBoard';
 
 //CONTAINERS
 import DisplayElementsContainer from '../containers/displayElementsContainer';
@@ -86,14 +87,12 @@ class DashBoardGrid extends Component {
                 <MapsBoard />
               </Grid>
               <Grid item lg={3} sm={6} xl={3} xs={12} onClick={this.handleClick}>
-                <MapsBoard />
+                <SportsBoard />
               </Grid>
               <Grid item lg={3} sm={6} xl={3} xs={12} onClick={this.handleClick}>
-                <MapsBoard />
+                <StocksBoard />
               </Grid>
-              <Grid item lg={3} sm={6} xl={3} xs={12} onClick={this.handleClick}>
-                <MapsBoard />
-              </Grid>
+
             </Grid>
 
           </div>

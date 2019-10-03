@@ -11,7 +11,7 @@ import IconButton from '@material-ui/core/IconButton';
 import { Card, CardContent, Grid, Typography, Avatar, CardMedia } from '@material-ui/core';
 // import AcUnitIcon from '@material-ui/icons/AcUnit'
 
-import restaurants from '../../images/eatingCartoon.gif';
+import stocks from '../../images/stocksGif.gif';
 
 
 const useStyles = makeStyles(theme => ({
@@ -21,13 +21,13 @@ const useStyles = makeStyles(theme => ({
   content: {
     alignItems: 'center',
     display: 'flex',
-    backgroundImage: `url(${restaurants})`
+    backgroundImage: `url(${stocks})`
   },
   title: {
     fontWeight: 700
   },
   media: {
-    height: 140,
+    height: 180,
   },
   avatar: {
     backgroundColor: theme.palette.error.main,
@@ -57,7 +57,7 @@ const useStyles = makeStyles(theme => ({
 
 
 
-const RestaurantsBoard = (props) => {
+const StocksBoard = (props) => {
   const { className, ...rest } = props;
   const classes = useStyles();
 
@@ -66,16 +66,14 @@ const RestaurantsBoard = (props) => {
         <CardContent >
           <Grid Container justify="space-between">
             <Grid item>
-              <Typography className={classes.title} color="textSecondary">Reservations</Typography>
+              <Typography className={classes.title} color="textSecondary">Stocks</Typography>
             </Grid>
             <CardMedia
                 className={classes.media}
-                image={restaurants}
-                title="restaurants"
+                image={stocks}
+                title="stocks"
               />
-            <Grid item>
-              <Typography className={classes.title} color="textSecondary">Current Reservations: 0</Typography>
-            </Grid>
+
 
           </Grid>
         </CardContent>
@@ -83,4 +81,4 @@ const RestaurantsBoard = (props) => {
   )
 }
 
-export default RestaurantsBoard;
+export default StocksBoard;

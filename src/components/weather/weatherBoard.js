@@ -74,9 +74,6 @@ const WeatherBoard = (props) => {
             <Grid item>
               <Typography className={classes.title} color="textSecondary">Humidity: .40</Typography>
             </Grid>
-            <Grid item>
-              <Typography className={classes.title} color="textSecondary">Chance of rain: 0</Typography>
-            </Grid>
           </Grid>
         </CardContent>
       </Card>

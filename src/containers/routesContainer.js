@@ -84,7 +84,7 @@ class RoutesContainer extends Component {
         </div>
 
         <div>
-          <ol><Routes route={this.state.data}/></ol>
+          <ol><Routes route={this.state.data} mode={this.state.mode}/></ol>
         </div>
       </div>
     )
