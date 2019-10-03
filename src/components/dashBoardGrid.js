@@ -85,6 +85,15 @@ class DashBoardGrid extends Component {
               <Grid item lg={3} sm={6} xl={3} xs={12} onClick={this.handleClick}>
                 <MapsBoard />
               </Grid>
+              <Grid item lg={3} sm={6} xl={3} xs={12} onClick={this.handleClick}>
+                <MapsBoard />
+              </Grid>
+              <Grid item lg={3} sm={6} xl={3} xs={12} onClick={this.handleClick}>
+                <MapsBoard />
+              </Grid>
+              <Grid item lg={3} sm={6} xl={3} xs={12} onClick={this.handleClick}>
+                <MapsBoard />
+              </Grid>
             </Grid>
 
           </div>

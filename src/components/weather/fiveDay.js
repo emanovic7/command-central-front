@@ -3,7 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import FormLabel from '@material-ui/core/FormLabel';
 import Paper from '@material-ui/core/Paper';
-import Modal from '@material-ui/core/Modal';
+import Popover from '@material-ui/core/Popover';
+import Typography from '@material-ui/core/Typography';
 
 
 
@@ -28,16 +29,7 @@ const useStyles = makeStyles(theme => ({
   paper: {
     height: 200,
     width: 120,
-
     backgroundSize: 'cover',
-  },
-  modalStyle: {
-    position: 'absolute',
-    width: 400,
-    backgroundColor: theme.palette.background.paper,
-    border: '2px solid #000',
-    boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3),
   },
   control: {
     padding: theme.spacing(2),
@@ -47,8 +39,16 @@ const useStyles = makeStyles(theme => ({
   },
   details: {
     textAlign: 'center',
+  },
+  typography: {
+    padding: theme.spacing(2),
+  },
+  weatherDetails: {
+    height: 400,
+    width: 300,
+    backgroundSize: 'cover',
 
-  }
+  },
 
 }));
 
@@ -74,31 +74,38 @@ function getModalStyle() {
 
 
 const FiveDayWeather = (props) => {
-  
+
   const classes = useStyles();
   const [spacing, setSpacing] = React.useState(2);
-  const [modalStyle] = React.useState(getModalStyle);
-  const [open, setOpen] = React.useState(false);
+  const [anchorEl, setAnchorEl] = React.useState(null);
 
-  const handleOpen = () => {
-    setOpen(true);
+  const handleClick = (weather) => {
+    console.log("from handleclick", weather)
+    setAnchorEl(weather);
   };
 
   const handleClose = () => {
-    setOpen(false);
+    setAnchorEl(null);
   };
+
+  const open = Boolean(anchorEl);
+  const id = open ? 'simple-popover' : undefined;
 
   const getDay = (time) => {
     let days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-    let newDate = new Date(time*1000)
-    let dayOfWeek = days[newDate.getDay()]
+    let newDate = new Date(time*1000);
+    let dayOfWeek = days[newDate.getDay()];
     return dayOfWeek;
   }
 
 
-  const stripQuotes = (term) => {
-    let icon = term.slice(1,-1);
-    return icon;
+  const getTime = (time) => {
+    let newDate = new Date(time * 1000);
+    let hours = newDate.getHours();
+    let minutes = "0" + newDate.getMinutes();
+    let seconds = "0" + newDate.getSeconds();
+    let timeOfDay = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+    return timeOfDay;
   }
 
 
@@ -107,9 +114,9 @@ const FiveDayWeather = (props) => {
       <Grid item xs={12}>
         <Grid container justify="center" spacing={spacing}>
           {props.weather.map(weather => (
-            <div onDoubleClick={handleOpen}>
+            <div onDoubleClick={() => handleClick(weather)}>
               <Grid key={weather.time} item>
-                  <Paper className={classes.paper}>
+                  <Paper className={classes.paper} >
                     <p className={classes.details}>{getDay(weather.time)}</p>
                     <div align="center" >
                       { weather.icon==="rain"? <img src={rain} alt={weather.icon} height={50} width={50} mode="fit"/> :
@@ -121,24 +128,46 @@ const FiveDayWeather = (props) => {
                     </div><br />
                     <h5 className={classes.details}>{weather.temperatureHigh}</h5>
                     <h5 className={classes.details}>{weather.temperatureLow}</h5>
+
+                    <Popover
+                        id={id}
+                        open={open}
+                        anchorEl={anchorEl}
+                        onClose={handleClose}
+                        anchorOrigin={{
+                          vertical: 'top',
+                          horizontal: 'center',
+                        }}
+                        transformOrigin={{
+                          vertical: 'top',
+                          horizontal: 'center',
+                        }}
+                      >
+
+                          <Grid container className={classes.root}>
+                            <Paper className={classes.weatherDetails}>
+                              <Typography className={classes.typography}>
+                                <p>Summary: {weather.summary}</p>
+                                <p>Conditions: {weather.icon}</p>
+                                <p>Pressure: {weather.pressure}</p>
+                                <p>Apparent Temp High: {weather.apparentTemperatureHigh}</p>
+                                <p>Apparent Temp Low: {weather.apparentTemperatureLow}</p>
+                                <p>Precipe Type: {weather.precipType}</p>
+                                <p>Precipe Intensity: {weather.precipIntensity}</p>
+                                <p>Humidity: {weather.humidity}</p>
+                                <p>Sunrise: {getTime(weather.sunriseTime)}</p>
+                                <p>Sunset: {getTime(weather.sunsetTime)}</p>
+                                <p>Visibility: {weather.visibility}</p>
+                              </Typography>
+                            </Paper>
+                          </Grid>
+
+                  </Popover>
                   </Paper>
               </Grid>
-
-              <Modal
-                aria-labelledby="simple-modal-title"
-                aria-describedby="simple-modal-description"
-                open={open}
-                onClose={handleClose}
-                >
-                <div style={modalStyle} className={classes.modalStyle}>
-                  <h2 id="simple-modal-title">{weather.icon}</h2>
-                  <p id="simple-modal-description">
-                    {weather.summary}
-                  </p>
-                </div>
-              </Modal>
             </div>
-          ))}
+          ))
+        }
 
         </Grid>
       </Grid>
