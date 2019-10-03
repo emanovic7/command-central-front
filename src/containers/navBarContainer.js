@@ -13,7 +13,7 @@ class NavBarContainer extends Component {
   }
 
   render(){
-    
+
     return(
       <div className="NavBar">
         <Navbar sticky="top" collapseOnSelect expland="lg" bg="primary" variant="dark">
@@ -24,7 +24,6 @@ class NavBarContainer extends Component {
           <Nav className="mr-auto">
             <Nav.Link href="/profile">{this.props.username}</Nav.Link>
             <Nav.Link href="/events">Calendar</Nav.Link>
-            <Nav.Link href="/tasks">Tasks</Nav.Link>
             <Nav.Link href="/favorites">Favorites</Nav.Link>
             <Nav.Link href="/reservations">Reservations</Nav.Link>
           </Nav>

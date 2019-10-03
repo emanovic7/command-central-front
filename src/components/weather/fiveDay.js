@@ -74,7 +74,7 @@ function getModalStyle() {
 
 
 const FiveDayWeather = (props) => {
-  console.log("props from fiveDay weather", props)
+  
   const classes = useStyles();
   const [spacing, setSpacing] = React.useState(2);
   const [modalStyle] = React.useState(getModalStyle);

@@ -46,12 +46,12 @@ class WeatherContainer extends Component {
     return(
       <div className="WeatherContainer">
         <Container>
-        <h2 align="center">weather</h2>
+        
           <Row>
             <Weather
               currently={this.state.currently}
             />
-          </Row>
+          </Row><br />
         <h2 align="center">five day forecast</h2><br />
           <Row>
             <div><FiveDayWeather weather={this.state.daily} /></div>
