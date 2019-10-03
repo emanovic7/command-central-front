@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Routes from '../components/routes/routes';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import ListGroup from 'react-bootstrap/ListGroup';
 
 
 
@@ -82,9 +83,9 @@ class RoutesContainer extends Component {
 
           </Form>
         </div>
-
+        <br />
         <div>
-          <ol><Routes route={this.state.data} mode={this.state.mode}/></ol>
+          <ListGroup><Routes route={this.state.data} mode={this.state.mode}/></ListGroup>
         </div>
       </div>
     )

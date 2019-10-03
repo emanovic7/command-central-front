@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Image from 'react-bootstrap/Image'
+import Image from 'react-bootstrap/Image';
+import ListGroup from 'react-bootstrap/ListGroup'
 
 import drive from '../../images/driveTraveling.gif';
 import transit from '../../images/busTraveling.gif';
@@ -16,7 +17,7 @@ const Routes = (props) => {
         <Col>
           <div>
             {props.route.map(route =>
-              <li>{route.html_instructions}</li>
+              <ListGroup.Item>{route.html_instructions}</ListGroup.Item>
             )}
           </div>
         </Col>
