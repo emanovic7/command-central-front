@@ -48,7 +48,7 @@ class App extends Component {
 //   //GRAB USER
   componentDidMount() {
     if (localStorage.token){
-      fetch('http://command-central-api.herokuapp.com/profile',{
+      fetch('https://command-central-api.herokuapp.com/profile',{
         headers: {
           'Authorization': `Bearer ${localStorage.token}`
         }
