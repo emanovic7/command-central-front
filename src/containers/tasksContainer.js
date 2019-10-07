@@ -20,7 +20,7 @@ class TasksContainer extends Component {
 
   //FETCH TASKS
   componentDidMount(){
-    fetch('http://command-central-api.herokuapp.com/tasks')
+    fetch('https://jarvis-back.herokuapp.com/tasks')
     .then(response => response.json())
     .then(tasks => this.setState({
       tasks: tasks
@@ -30,7 +30,7 @@ class TasksContainer extends Component {
   //ADD TASK
   handleNewTask = (task) => {
 
-    fetch('http://command-central-api.herokuapp.com/tasks', {
+    fetch('https://jarvis-back.herokuapp.com/tasks', {
       method: "POST",
       headers: {
         "Accept": "application/json",

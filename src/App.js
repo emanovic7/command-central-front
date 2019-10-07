@@ -48,7 +48,7 @@ class App extends Component {
 //   //GRAB USER
   componentDidMount() {
     if (localStorage.token){
-      fetch(' https://jarvis-back.herokuapp.com/profile',{
+      fetch('https://jarvis-back.herokuapp.com/profile',{
         headers: {
           'Authorization': `Bearer ${localStorage.token}`
         }
