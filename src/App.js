@@ -48,7 +48,7 @@ class App extends Component {
 //   //GRAB USER
   componentDidMount() {
     if (localStorage.token){
-      fetch('https://command-central-api.herokuapp.com/profile',{
+      fetch(' https://jarvis-back.herokuapp.com/profile',{
         headers: {
           'Authorization': `Bearer ${localStorage.token}`
         }
@@ -83,7 +83,7 @@ class App extends Component {
     let username = user.username;
     let password = user.password;
 
-    fetch('http://localhost:3000/users', {
+    fetch(' https://jarvis-back.herokuapp.com/users', {
       method: "POST",
       headers: {
         "Accept": "application/json",
@@ -101,7 +101,7 @@ class App extends Component {
 
   addFavorite = (favorite) => {
 
-    fetch('http://localhost:3000/favorites',{
+    fetch(' https://jarvis-back.herokuapp.com/favorites',{
       method: "POST",
       headers: {
         "Accept": "application/json",
@@ -121,7 +121,7 @@ class App extends Component {
 
   reserveRestaurant = (restaurant) => {
 
-    fetch('http://localhost:3000/reservations', {
+    fetch(' https://jarvis-back.herokuapp.com/reservations', {
       method: "POST",
       headers: {
         "Accept": "application/json",
