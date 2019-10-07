@@ -20,7 +20,7 @@ class TasksContainer extends Component {
 
   //FETCH TASKS
   componentDidMount(){
-    fetch('http://localhost:3000/tasks')
+    fetch('https://command-central-api.herokuapp.com/tasks')
     .then(response => response.json())
     .then(tasks => this.setState({
       tasks: tasks
@@ -53,7 +53,13 @@ class TasksContainer extends Component {
 
     const updatedTasks = this.state.tasks.map(task =>{
       if(task.id === newTask.id){
-        task.done = true;
+        // task.done = true;
+          if(task.done === true){
+            task.done = false
+          }
+          else{
+            task.done = true
+          }
         return task;
       }
       else{
