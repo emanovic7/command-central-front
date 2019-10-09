@@ -31,7 +31,7 @@ class LoginPage extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    fetch(' https://jarvis-back.herokuapp.com/login', {
+    fetch('https://jarvis-back.herokuapp.com/login', {
       method: "POST",
       headers: {
         "Accept": "application/json",

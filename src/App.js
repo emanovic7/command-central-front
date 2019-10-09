@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import { Switch, Route, withRouter } from 'react-router-dom';
-import { ThemeProvider } from '@material-ui/styles';
-import theme from './components/theme';
+import { createStore } from 'redux';
 
 
 //STYLING
@@ -10,6 +9,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Container from '@material-ui/core/Container';
+import { ThemeProvider } from '@material-ui/styles';
+import theme from './components/theme';
 
 //Components
 import LoginPage from './components/user_pages/LoginPage';
@@ -48,7 +49,7 @@ class App extends Component {
 //   //GRAB USER
   componentDidMount() {
     if (localStorage.token){
-      fetch('https://jarvis-back.herokuapp.com/profile',{
+      fetch('http://localhost:3000/profile',{
         headers: {
           'Authorization': `Bearer ${localStorage.token}`
         }
@@ -83,7 +84,7 @@ class App extends Component {
     let username = user.username;
     let password = user.password;
 
-    fetch('https://jarvis-back.herokuapp.com//users', {
+    fetch('http://localhost:3000/users', {
       method: "POST",
       headers: {
         "Accept": "application/json",
