@@ -68,7 +68,7 @@ class TasksContainer extends Component {
     })
 
     const taskId = newTask.id
-    fetch(`http://localhost:3000/tasks/${taskId}`, {
+    fetch(`https://jarvis-back.herokuapp.com/tasks/${taskId}`, {
       method: "PATCH",
       headers: {
         "Accept": "application/json",
@@ -93,7 +93,7 @@ class TasksContainer extends Component {
     )
 
     let taskId = deletedTask.id
-    fetch(`http://localhost:3000/tasks/${taskId}`, {
+    fetch(`https://jarvis-back.herokuapp.com/tasks/${taskId}`, {
       method: "DELETE"
     })
     .then(this.setState({

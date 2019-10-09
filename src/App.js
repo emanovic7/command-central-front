@@ -83,7 +83,7 @@ class App extends Component {
     let username = user.username;
     let password = user.password;
 
-    fetch(' https://jarvis-back.herokuapp.com/users', {
+    fetch('https://jarvis-back.herokuapp.com//users', {
       method: "POST",
       headers: {
         "Accept": "application/json",
@@ -101,7 +101,7 @@ class App extends Component {
 
   addFavorite = (favorite) => {
 
-    fetch(' https://jarvis-back.herokuapp.com/favorites',{
+    fetch('https://jarvis-back.herokuapp.com/favorites',{
       method: "POST",
       headers: {
         "Accept": "application/json",
@@ -121,7 +121,7 @@ class App extends Component {
 
   reserveRestaurant = (restaurant) => {
 
-    fetch(' https://jarvis-back.herokuapp.com/reservations', {
+    fetch('http://localhost:3000/reservations', {
       method: "POST",
       headers: {
         "Accept": "application/json",
