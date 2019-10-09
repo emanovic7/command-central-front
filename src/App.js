@@ -33,6 +33,30 @@ import ReservationsContainer from './containers/reservationsContainer';
 import FavoritesContainer from './containers/favoritesContainer';
 
 
+const reducer = (state={user: "emanovic7"}, action) => {
+
+  console.log("state ", state)
+  console.log("nextState ", action)
+
+  switch (action.type) {
+    case "SET_USER":
+      return { user: action.user }
+
+    default:
+      return state
+  }
+
+  if(action.type === "SET_USER"){
+    return { user: action.user }
+  }else {
+    return { user: "Emoney"}
+  }
+
+}
+
+const store = createStore(reducer)
+
+
 
 
 class App extends Component {
