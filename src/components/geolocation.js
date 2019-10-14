@@ -22,14 +22,27 @@ class Geolocation extends React.Component {
 
     return(
       <div>
-        <p>longitude: {coords.longitude}</p>
-        <p>latitude: {coords.latitude}</p>
-        <p>accuracy: {coords.accuracy}</p>
+        {this.props.setLatittude}
       </div>
     )
   }
 
 }
 
+const mapStateToProps = (store) => {
+  return{
+    user: store.user
+  }
+}
 
-export default Geolocation
+const mapDispatchToProps = (dispatch) => {
+  return{
+    setLatittude: () => {
+      dispatch({type: "SET_LATITUDE", latitude: 'latitudeas'})
+    }
+  }
+}
+
+
+
+export default (mapStateToProps, mapDispatchToProps)(Geolocation)

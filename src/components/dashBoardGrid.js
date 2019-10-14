@@ -66,7 +66,7 @@ class DashBoardGrid extends Component {
 
             <Grid container spacing={4}>
               <Grid item item lg={3} md={6} xl={3} xs={12}>
-                <TasksContainer user_id={this.props.user_id}/>
+                <TasksContainer />
               </Grid>
 
               <Grid item item lg={8} md={12} xl={9} xs={12}>
@@ -97,7 +97,6 @@ class DashBoardGrid extends Component {
               <Grid item lg={3} sm={6} xl={3} xs={12} onClick={this.handleClick}>
                 <StocksBoard />
               </Grid>
-            
 
             </Grid>
 

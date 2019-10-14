@@ -1,4 +1,6 @@
 import React, { Component, Fragment } from 'react';
+import { createStore } from 'redux';
+import { connect } from 'react-redux'
 import { ThemeProvider } from '@material-ui/styles';
 import theme from '../../components/theme';
 
@@ -27,12 +29,26 @@ class ProfilePage extends Component {
   constructor(props){
     super(props)
     this.state = {
-      username: '',
-      user_id: '',
       component: ''
     }
   }
 
+  //GRAB USER
+    componentDidMount() {
+      if (localStorage.token){
+        fetch('http://localhost:3000/profile',{
+          headers: {
+            'Authorization': `Bearer ${localStorage.token}`
+          }
+        })
+        .then(res => res.json())
+        .then(user => this.props.setUser(user))
+
+    }
+    else {
+      this.props.history.push('/')
+    }
+  }
 
   changeComponent = (component) => {
     this.setState({
@@ -41,12 +57,12 @@ class ProfilePage extends Component {
   }
 
   render(){
-  
+
      switch (this.state.component) {
         case 'toDo':
-          return <TasksContainer user_id={this.props.user_id} username={this.props.username} />
+          return <TasksContainer user_id={this.props.userID} username={this.props.username} />
         case 'restaurants':
-          return <RestaurantsContainer user_id={this.props.user_id} username={this.props.username} addFavorite={(favorite) => this.props.addFavorite(favorite)} />
+          return <RestaurantsContainer user_id={this.props.userID} username={this.props.username} addFavorite={(favorite) => this.props.addFavorite(favorite)} />
         case 'weather':
           return <WeatherContainer />
         case 'maps':
@@ -55,10 +71,9 @@ class ProfilePage extends Component {
         default:
           return (
 
-
             <React.Fragment>
               <ThemeProvider theme={theme}>
-                <DashBoardGrid user_id={this.props.user_id} username={this.props.username} logout={this.handleLogout} addFavorite={(favorite) => this.props.addFavorite(favorite)} reserveRestaurant={(restaurant) => this.props.reserveRestaurant(restaurant)}/>
+                <DashBoardGrid logout={this.handleLogout} addFavorite={(favorite) => this.props.addFavorite(favorite)} reserveRestaurant={(restaurant) => this.props.reserveRestaurant(restaurant)}/>
               </ThemeProvider>
             </React.Fragment>
           )
@@ -69,5 +84,20 @@ class ProfilePage extends Component {
 }
 
 
+const mapStateToProps = (store) => {
+  return {
+    username: store.user.username,
+    userID: store.user.id
+  }
+}
 
-export default ProfilePage;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setUser: (user) => {
+      dispatch({type: 'SET_USER', user: user})
+    }
+  }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProfilePage);

@@ -39,33 +39,12 @@ class App extends Component {
   constructor(){
     super()
     this.state = {
-      username: '',
-      user_id: '',
       favorites: [],
       longitude: '',
       latitude: ''
     }
   }
 
-//   //GRAB USER
-  componentDidMount() {
-    if (localStorage.token){
-      fetch('http://localhost:3000/profile',{
-        headers: {
-          'Authorization': `Bearer ${localStorage.token}`
-        }
-      })
-      .then(res => res.json())
-      .then(user => this.setState({
-        username: user.username,
-        user_id: user.id
-      })
-    )
-  }
-  else {
-    this.props.history.push('/')
-  }
-}
 
   //LOGOUT
   handleLogout = () => {
@@ -146,11 +125,11 @@ class App extends Component {
     console.log("App state", this.state)
     return(
       <div>
-      <NavBarContainer username={this.state.username} logout={this.handleLogout}/>
+      <NavBarContainer logout={this.handleLogout}/>
         <Switch>
             <Route
             path={'/profile'}
-            render={(routerProps, props) => <ProfilePage {...routerProps} username={this.state.username} user_id={this.state.user_id} addFavorite={this.addFavorite} reserveRestaurant={this.reserveRestaurant}/>} />
+            render={(routerProps, props) => <ProfilePage {...routerProps} addFavorite={this.addFavorite} reserveRestaurant={this.reserveRestaurant}/>} />
             <Route path={'/login'} component={LoginPage} />
             <Route path={'/signup'}
             render={routerProps => <SignUpPage {...routerProps} addUser={this.handleNewUser} />} />
@@ -170,17 +149,10 @@ class App extends Component {
 
 const mapStateToProps = (store) => {
   return {
-    user: store.user
-  }
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    setUser: () => {
-      dispatch({type: 'SET_USER', user: "Emmanuel"})
-    }
+    username: store.user.username,
+    userID: store.user.id
   }
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, null)(App);

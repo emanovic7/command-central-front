@@ -3,6 +3,8 @@ import { List, Icon, Input, Button } from 'semantic-ui-react'
 import Task from '../components/tasks/task';
 import NewTask from '../components/tasks/newTask';
 import TaskList from '../components/tasks/tasksList';
+import { createStore } from 'redux';
+import { connect } from 'react-redux'
 
 
 
@@ -12,8 +14,7 @@ class TasksContainer extends Component {
     super()
     this.state = {
       tasks: [],
-      completed: [],
-      user_id: ''
+      completed: []
     }
   }
 
@@ -38,7 +39,7 @@ class TasksContainer extends Component {
       },
       body: JSON.stringify({
         note: task.note,
-        user_id: task.user_id,
+        user_id: this.props.user.id,
         done: false
       })
     })
@@ -106,7 +107,7 @@ class TasksContainer extends Component {
 
     //INCOMPLETE TASKS
     const userIncompleteTasks = this.state.tasks.filter(task =>
-      (task.user_id === this.props.user_id)
+      (task.user_id === this.props.user.id)
     )
 
     const allTasks = userIncompleteTasks.map(task =>
@@ -117,11 +118,17 @@ class TasksContainer extends Component {
       <div className="container">
         <h3><Icon link name="tasks" size="large"/>Tasks</h3>
         <List as="ul">{allTasks}</List>
-        <NewTask user_id={this.props.user_id} addTask={this.handleNewTask}/>
+        <NewTask user_id={this.props.user.id} addTask={this.handleNewTask}/>
       </div>
     )
   }
 }
 
+const mapStateToProps = (store) => {
+  return {
+    user: store.user
+  }
+}
 
-export default TasksContainer;
+
+export default connect(mapStateToProps, null)(TasksContainer);
