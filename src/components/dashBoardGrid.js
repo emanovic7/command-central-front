@@ -10,7 +10,7 @@ import MapsBoard from '../components/routes/routesBoard';
 import TasksBoard from '../components/tasks/tasksBoard';
 import SportsBoard from '../components/sports/sportsBoard';
 import StocksBoard from '../components/stocks/stocksBoard';
-import Geolocation from '../components/geolocation';
+
 
 //CONTAINERS
 import DisplayElementsContainer from '../containers/displayElementsContainer';
@@ -97,9 +97,7 @@ class DashBoardGrid extends Component {
               <Grid item lg={3} sm={6} xl={3} xs={12} onClick={this.handleClick}>
                 <StocksBoard />
               </Grid>
-              <Grid item lg={3} sm={6} xl={3} xs={12} onClick={this.handleClick}>
-                <Geolocation />
-              </Grid>
+            
 
             </Grid>
 

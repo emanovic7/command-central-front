@@ -13,11 +13,4 @@ export default (state={user: "emanovic7"}, action) => {
     default:
       return state
   }
-
-  if(action.type === "SET_USER"){
-    return { user: action.user }
-  }else {
-    return { user: "Emoney"}
-  }
-
 }

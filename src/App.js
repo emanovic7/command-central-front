@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import { Switch, Route, withRouter } from 'react-router-dom';
 import { createStore } from 'redux';
+import { connect } from 'react-redux'
 
 
 //STYLING
@@ -40,7 +41,9 @@ class App extends Component {
     this.state = {
       username: '',
       user_id: '',
-      favorites: []
+      favorites: [],
+      longitude: '',
+      latitude: ''
     }
   }
 
@@ -117,7 +120,6 @@ class App extends Component {
     .then(alert("Added to favorites"))
   }
 
-
   reserveRestaurant = (restaurant) => {
 
     fetch('http://localhost:3000/reservations', {
@@ -138,14 +140,10 @@ class App extends Component {
     .then(alert("Reservation made!"))
   }
 
-  // t.string "title"
-  //   t.string "venue"
-  //   t.date "date"
-  //   t.time "time"
-  //   t.integer "user_id"
 
   render(){
-
+    console.log("props from app", this.props)
+    console.log("App state", this.state)
     return(
       <div>
       <NavBarContainer username={this.state.username} logout={this.handleLogout}/>
@@ -167,28 +165,22 @@ class App extends Component {
       </div>
     )
 
-  //   switch (this.state.page) {
-  //     case 'login':
-  //       return <LoginPage redirectPage={this.redirectPage}/>
-  //     case 'profile':
-  //       return (
-  //           <div className="">
-  //             <ProfilePage />
-  //             <SpacingGrid />
-  //           </div>
-  //         )
-  //
-  //     case 'signup':
-  //       return <SignUpPage />
-  //
-  //     default:
-  //       return <LoginPage />
-  //   }
-  // }
-
-
+  }
 }
+
+const mapStateToProps = (store) => {
+  return {
+    user: store.user
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setUser: () => {
+      dispatch({type: 'SET_USER', user: "Emmanuel"})
+    }
+  }
 }
 
 
-export default withRouter(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
