@@ -3,6 +3,14 @@ import { connect } from 'react-redux';
 
 class Geolocation extends React.Component {
 
+  constructor(){
+    super()
+    this.state = {
+      longitude: '',
+      latitude: ''
+    }
+  }
+
   render(){
     const options = {
       enableHighAccuracy: true,
@@ -11,7 +19,10 @@ class Geolocation extends React.Component {
     };
 
     const success = (position) => {
-      var coords = position.coords;
+      this.setState({
+        longitude: position.coords.longitude,
+        latitude: position.coords.latitude
+      })
     }
 
     const error = (err) => {
@@ -22,7 +33,7 @@ class Geolocation extends React.Component {
 
     return(
       <div>
-        {this.props.setLatittude}
+        geolocation
       </div>
     )
   }
@@ -31,7 +42,8 @@ class Geolocation extends React.Component {
 
 const mapStateToProps = (store) => {
   return{
-    user: store.user
+    user: store.user,
+    latitude: store.latitude
   }
 }
 
@@ -45,4 +57,7 @@ const mapDispatchToProps = (dispatch) => {
 
 
 
-export default (mapStateToProps, mapDispatchToProps)(Geolocation)
+
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Geolocation)

@@ -3,6 +3,7 @@ import Routes from '../components/routes/routes';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import ListGroup from 'react-bootstrap/ListGroup';
+import { connect } from 'react-redux'
 
 
 
@@ -55,7 +56,16 @@ class RoutesContainer extends Component {
   render(){
     console.log("state from routes", this.state)
     console.log("data from routes", this.state.data)
+    console.log("props from routes", this.props)
 
+    const sumTravelTime = () => {
+      let sum = 0;
+      this.state.data.forEach(info => {
+        let number = parseInt(info.duration.text.split(' ')[0], 10);
+        sum += number;
+      })
+      return sum;
+    }
 
     return(
       <div>
@@ -85,6 +95,14 @@ class RoutesContainer extends Component {
         </div>
         <br />
         <div>
+          {this.state.data.length ?
+            <div className="travelSummary">
+              <h6>summary</h6>
+              <p>mode: {this.state.mode}</p>
+              <p>travel time: {sumTravelTime()} mins</p>
+            </div>
+            :
+            null}
           <ListGroup><Routes route={this.state.data} mode={this.state.mode}/></ListGroup>
         </div>
       </div>
@@ -93,12 +111,10 @@ class RoutesContainer extends Component {
 
 }
 
+  const mapStateToProps = (store) => {
+    return {
+      store: store
+    }
+  }
 
-export default RoutesContainer;
-
-
-// <form onSubmit={this.handleSubmit}>
-//   <input type="text" placeholder="starting point" name="start" value={this.state.start} onChange={this.handleChange}/><br />
-//   <input type="text" placeholder="ending point" name="end" value={this.state.end} onChange={this.handleChange}/><br />
-//   <input type="submit" value="get directions" />
-// </form>
+export default connect(mapStateToProps, null)(RoutesContainer);
