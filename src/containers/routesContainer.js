@@ -67,6 +67,22 @@ class RoutesContainer extends Component {
       return sum;
     }
 
+    const sumTravelDistance = () => {
+      let sum = 0;
+      this.state.data.forEach(info => {
+        let units = info.distance.text.split(' ')[1];
+        let distance = info.distance.text.split(' ')[0]
+        //conversion to miles
+        if(units === "ft"){
+          distance = parseInt(distance, 10) * 0.000189394;
+          sum += distance
+        }else {
+          sum += parseInt(distance, 10)
+        }
+      })
+      return Math.round(sum * 100) / 100;
+    }
+
     return(
       <div>
 
@@ -98,8 +114,11 @@ class RoutesContainer extends Component {
           {this.state.data.length ?
             <div className="travelSummary">
               <h6>summary</h6>
-              <p>mode: {this.state.mode}</p>
-              <p>travel time: {sumTravelTime()} mins</p>
+              <ul>
+                <li>mode: {this.state.mode}</li>
+                <li>travel time: {sumTravelTime()} mins</li>
+                <li>travel distance: {sumTravelDistance()} miles</li>
+              </ul>
             </div>
             :
             null}
