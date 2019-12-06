@@ -23,11 +23,36 @@ class NewsContainer extends Component {
     //.then(data => console.log(data))
   }
 
+  //search news, new fetch? or fetch all and update?
+  searchNews = () => {
+    if(this.state.searchTerm){
+      fetch(`https://newsapi.org/v2/top-headlines?q=${this.state.searchTerm}&apiKey=8aef1181042e4066a428c268e4e1078d`)
+      .then(response => response.json())
+      .then(data => this.setState({news: data.articles}))
+    }else{
+      alert("Please enter search term")
+    }
+  }
+
+  handleChange = (event) => {
+    this.setState({
+      [event.target.name]: event.target.value
+    })
+  }
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    this.searchNews();
+  }
+
+
 
 
 
 
   render(){
+    console.log("NewsContainer state", this.state)
+
     const allNews = this.state.news.map(news =>
       <News news={news}/>
     )
@@ -38,6 +63,10 @@ class NewsContainer extends Component {
 
     return(
       <div>
+        <form onSubmit={this.handleSubmit}>
+          <input type="text" name="searchTerm" onChange={this.handleChange} value={this.state.searchTerm}/>
+          <input type="submit" />
+        </form>
         <NewsBoard news={this.state.news} />
       </div>
     )

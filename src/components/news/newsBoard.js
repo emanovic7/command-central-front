@@ -58,7 +58,6 @@ const useStyles = makeStyles(theme => ({
 
 
 const NewsBoard = (props) => {
-
   const newsItems = props.news.map(newsItem =>
     newsItem
   )
@@ -76,7 +75,6 @@ const NewsBoard = (props) => {
 
   const classes = useStyles();
 
-
   return (
 
     <Card>
@@ -85,7 +83,7 @@ const NewsBoard = (props) => {
         className={classes.input}
         placeholder="Search News"
       />
-      
+
         <div >
           <FixedSizeList height={400} width={1400} itemSize={20} itemCount={1}>
             {Row}
