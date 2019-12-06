@@ -64,8 +64,7 @@ class NewsContainer extends Component {
     return(
       <div>
         <form onSubmit={this.handleSubmit}>
-          <input type="text" name="searchTerm" onChange={this.handleChange} value={this.state.searchTerm}/>
-          <input type="submit" />
+          <input placeholder="search news" type="text" name="searchTerm" onChange={this.handleChange} value={this.state.searchTerm}/>
         </form>
         <NewsBoard news={this.state.news} />
       </div>
