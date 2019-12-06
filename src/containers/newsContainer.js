@@ -45,7 +45,7 @@ class NewsContainer extends Component {
     this.searchNews();
   }
 
-
+  //adding comment to check git commit user
 
 
 
