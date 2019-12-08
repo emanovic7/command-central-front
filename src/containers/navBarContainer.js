@@ -32,7 +32,7 @@ class NavBarContainer extends Component {
           <Nav>
             <div >
               <Nav.Link href="#">
-                <button onClick={this.handleLogout}>Logout</button>
+                {this.props.user ? <button onClick={this.handleLogout}>Logout</button> : null}
               </Nav.Link>
             </div>
           </Nav>
