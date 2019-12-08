@@ -20,20 +20,28 @@ class Geolocation extends React.Component {
 
     const success = (position) => {
       this.setState({
-        longitude: position.coords.longitude,
-        latitude: position.coords.latitude
-      })
+         longitude: position.coords.longitude,
+         latitude: position.coords.latitude
+      });
     }
 
     const error = (err) => {
       console.warn(`ERROR(${err.code}): ${err.message}`);
     }
 
-    navigator.geolocation.getCurrentPosition(success, error, options);
+    if('geolocation' in navigator){
+      navigator.geolocation.getCurrentPosition(success, error, options);
+    } else {
+      alert('geolocation not available.')
+    }
+
+    console.log("latitude", this.state.latitude);
+    console.log("longitude", this.state.longitude);
 
     return(
       <div>
-        geolocation
+        <p>Latitude: {this.state.latitude}</p>
+        <p>Longitude: {this.state.longitude}</p>
       </div>
     )
   }
