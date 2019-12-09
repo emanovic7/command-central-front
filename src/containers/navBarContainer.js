@@ -21,25 +21,31 @@ class NavBarContainer extends Component {
         <Navbar sticky="top" collapseOnSelect expland="lg" bg="primary" variant="dark">
           <Navbar.Brand href="#home">JARVIS</Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
 
-        {this.props.user ?
-          <Nav className="mr-auto">
-            <Nav.Link href="/profile">{this.props.user.username}</Nav.Link>
-            <Nav.Link href="/events">Calendar</Nav.Link>
-            <Nav.Link href="/favorites">Favorites</Nav.Link>
-            <Nav.Link href="/reservations">Reservations</Nav.Link>
-          </Nav>
-            :
-            null
-        }
-          <Nav>
-            <div >
-              <Nav.Link href="#">
-                {this.props.user ? <button onClick={this.handleLogout}>Logout</button> : null}
-              </Nav.Link>
-            </div>
-          </Nav>
+          <Navbar.Collapse id="basic-navbar-nav">
+            {this.props.user ?
+              <Nav className="mr-auto">
+                <Nav.Link href="/profile">{this.props.user.username}</Nav.Link>
+                <Nav.Link href="/events">Calendar</Nav.Link>
+                <Nav.Link href="/favorites">Favorites</Nav.Link>
+                <Nav.Link href="/reservations">Reservations</Nav.Link>
+                
+                <Nav>
+                  <Nav.Link>Current Location: </Nav.Link>
+                  <Nav.Link>Local Time: </Nav.Link>
+                </Nav>
+              </Nav>
+                :
+                null
+            }
+
+              <Nav>
+                <div >
+                  <Nav.Link href="#">
+                    {this.props.user ? <button onClick={this.handleLogout}>Logout</button> : null}
+                  </Nav.Link>
+                </div>
+              </Nav>
         </Navbar.Collapse>
         </Navbar>
       </div>
