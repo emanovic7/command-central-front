@@ -23,12 +23,16 @@ class NavBarContainer extends Component {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
 
+        {this.props.user ?
           <Nav className="mr-auto">
             <Nav.Link href="/profile">{this.props.user.username}</Nav.Link>
             <Nav.Link href="/events">Calendar</Nav.Link>
             <Nav.Link href="/favorites">Favorites</Nav.Link>
             <Nav.Link href="/reservations">Reservations</Nav.Link>
           </Nav>
+            :
+            null
+        }
           <Nav>
             <div >
               <Nav.Link href="#">
