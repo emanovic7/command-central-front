@@ -11,6 +11,7 @@ class Geolocation extends React.Component {
     }
   }
 
+
   render(){
     const options = {
       enableHighAccuracy: true,

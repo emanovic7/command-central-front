@@ -8,17 +8,19 @@ class ReverseLocation extends Component {
   constructor(){
     super();
     this.state = {
-      city: '',
-      country: ''
+      location: ''
     }
   }
 
   componentDidMount(){
     const API_KEY = "AIzaSyDlFzVIkqtTEuuhFi5ACR6OVx-YbtkVWOc";
 
-    fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=40.8356724,-73.9269466&key=${API_KEY}`)
+    fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=40.8356724,-73.9269466&result_type=neighborhood&key=${API_KEY}`)
     .then(response => response.json())
-    .then(data => console.log(data))
+    .then(data => this.setState({
+      location: data.results[0].formatted_address
+    }))
+    // .then(data => console.log(data.results[0].formatted_address))
   }
 
 
@@ -27,8 +29,7 @@ class ReverseLocation extends Component {
   render(){
     return (
       <div>
-        <p> city: {this.state.city} </p>
-        <p> country: {this.state.country} </p>
+        <p> location: {this.state.location} </p>
       </div>
     )
   }
