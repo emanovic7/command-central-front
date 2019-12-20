@@ -148,6 +148,7 @@ class App extends Component {
 }
 
 const mapStateToProps = (store) => {
+
   return {
     username: store.user.username,
     userID: store.user.id

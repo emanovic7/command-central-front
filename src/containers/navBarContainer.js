@@ -15,7 +15,7 @@ class NavBarContainer extends Component {
   }
 
   render(){
-    console.log("NAVBAR", this.props)
+
     return(
       <div className="NavBar">
         <Navbar sticky="top" collapseOnSelect expland="lg" bg="primary" variant="dark">
@@ -29,7 +29,7 @@ class NavBarContainer extends Component {
                 <Nav.Link href="/events">Calendar</Nav.Link>
                 <Nav.Link href="/favorites">Favorites</Nav.Link>
                 <Nav.Link href="/reservations">Reservations</Nav.Link>
-                
+
                 <Nav>
                   <Nav.Link>Current Location: </Nav.Link>
                   <Nav.Link>Local Time: </Nav.Link>

@@ -51,7 +51,6 @@ class NewsContainer extends Component {
 
 
   render(){
-    console.log("NewsContainer state", this.state)
 
     const allNews = this.state.news.map(news =>
       <News news={news}/>

@@ -36,9 +36,6 @@ class Geolocation extends React.Component {
       alert('geolocation not available.')
     }
 
-    console.log("latitude", this.state.latitude);
-    console.log("longitude", this.state.longitude);
-
     return(
       <div>
         <p>Latitude: {this.state.latitude}</p>
