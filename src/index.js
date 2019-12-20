@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import Geolocation from './components/geolocation';
+import Geolocation from './components/location/geolocation';
+import ReverseLocation from './components/location/reverseLocation';
 import rootReducer from './reducers/rootReducer'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter } from 'react-router-dom';
@@ -18,6 +19,7 @@ ReactDOM.render(
       <div>
       <App />
       <Geolocation />
+      <ReverseLocation />
       </div>
     </BrowserRouter>
   </Provider>,
