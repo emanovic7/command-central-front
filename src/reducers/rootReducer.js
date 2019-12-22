@@ -4,12 +4,8 @@ import reverseLocation from './reverseLocationReducer';
 import geolocation from './geolocationReducer';
 
 
-const rootReducer = combineReducers({
-  user: user,
-  geolocation: geolocation,
-  reverseLocation: reverseLocation
+export default combineReducers({
+  user,
+  geolocation,
+  reverseLocation
 })
-
-
-
-export default rootReducer;
