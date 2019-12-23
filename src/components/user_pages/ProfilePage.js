@@ -86,14 +86,15 @@ class ProfilePage extends Component {
 
 const mapStateToProps = (store) => {
   return {
-    username: store.user.username,
-    userID: store.user.id
+    username: store.currentUser.username,
+    userID: store.currentUser.id
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     setUser: (user) => {
+      debugger;
       dispatch({type: 'SET_USER', user: user})
     }
   }

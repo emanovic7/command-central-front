@@ -49,7 +49,7 @@ class App extends Component {
   //LOGOUT
   handleLogout = () => {
     localStorage.clear()
-    this.props.history.push('/')
+    this.props.history.push('/login')
   }
 
   //SET SELECTED PAGE
@@ -150,8 +150,8 @@ class App extends Component {
 const mapStateToProps = (store) => {
 
   return {
-    username: store.user.username,
-    userID: store.user.id
+    username: store.currentUser.username,
+    userID: store.currentUser.id
   }
 }
 

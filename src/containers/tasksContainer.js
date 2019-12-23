@@ -126,7 +126,7 @@ class TasksContainer extends Component {
 
 const mapStateToProps = (store) => {
   return {
-    user: store.user
+    user: store.currentUser
   }
 }
 

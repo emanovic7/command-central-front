@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { createStore } from 'redux';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
+import { logOut } from '../actions/userActions';
 
 
 
@@ -11,7 +12,8 @@ import { connect } from 'react-redux'
 class NavBarContainer extends Component {
 
   handleLogout = () => {
-    this.props.logout()
+    this.props.logOut()
+    this.props.history.push('/login')
   }
 
   render(){
@@ -56,9 +58,13 @@ class NavBarContainer extends Component {
 
 const mapStateToProps = (store) => {
   return {
-    user: store.user
+    user: store.currentUser
   }
 }
 
+const mapDispatchToProps = {
+  logOut: logOut
+}
 
-export default connect(mapStateToProps, null)(NavBarContainer);
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NavBarContainer));
