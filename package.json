@@ -19,6 +19,7 @@
     "react-scripts": "^3.3.0",
     "react-window": "^1.8.5",
     "redux": "^4.0.4",
+    "redux-thunk": "^2.3.0",
     "semantic-ui-react": "^0.88.1"
   },
   "engines": {
