@@ -64,7 +64,7 @@ class App extends Component {
     let username = user.username;
     let password = user.password;
 
-    fetch('http://localhost:3000/users', {
+    fetch('https://jarvis-back.herokuapp.com/users', {
       method: "POST",
       headers: {
         "Accept": "application/json",

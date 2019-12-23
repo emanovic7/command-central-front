@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
+import { signUp } from '../../actions/userActions'
+
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
@@ -16,6 +19,12 @@ class SignUpPage extends Component {
     }
   }
 
+  componentDidMount(){
+    if(localStorage.token){
+      this.props.history.push('/profile')
+    }
+  }
+
   handleChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value
@@ -24,12 +33,15 @@ class SignUpPage extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
-    this.props.addUser(this.state)
+    this.props.signUp(this.state.name, this.state.username, this.state.password)
+    .then(() => {
+      this.props.history.push("/profile")
+    })
   }
 
   render(){
-      console.log("from singup page",this.props)
-      console.log("from singup page",this.state)
+      console.log("props from singup page",this.props)
+      console.log("state from singup page",this.state)
     return(
 
       <div className="Homepage">
@@ -52,5 +64,14 @@ class SignUpPage extends Component {
   }
 }
 
+const mapStateToProps = store => {
+  return {
+    user: store.currentUser
+  }
+}
 
-export default SignUpPage;
+const mapDispatchToProps = {
+  signUp: signUp
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignUpPage)

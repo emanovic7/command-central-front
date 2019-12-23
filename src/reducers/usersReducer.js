@@ -12,6 +12,8 @@ export default(state = defaultState, action) => {
       return action.user
     case "LOGOUT":
       return defaultState
+    case "ADD_USER":
+      return {...action.user}
     default:
       return state;
   }
