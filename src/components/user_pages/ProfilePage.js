@@ -78,8 +78,6 @@ class ProfilePage extends Component {
             </React.Fragment>
           )
       }
-
-
   }
 }
 
