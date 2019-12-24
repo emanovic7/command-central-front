@@ -94,7 +94,6 @@ const mapStateToProps = (store) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     setUser: (user) => {
-      debugger;
       dispatch({type: 'SET_USER', user: user})
     }
   }

@@ -17,7 +17,7 @@ class NavBarContainer extends Component {
   }
 
   render(){
-
+    console.log("navbar state", this.props)
     return(
       <div className="NavBar">
         <Navbar sticky="top" collapseOnSelect expland="lg" bg="primary" variant="dark">
@@ -25,7 +25,7 @@ class NavBarContainer extends Component {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
 
           <Navbar.Collapse id="basic-navbar-nav">
-            {this.props.user ?
+            {this.props.user.username ?
               <Nav className="mr-auto">
                 <Nav.Link href="/profile">{this.props.user.username}</Nav.Link>
                 <Nav.Link href="/events">Calendar</Nav.Link>
@@ -44,7 +44,7 @@ class NavBarContainer extends Component {
               <Nav>
                 <div >
                   <Nav.Link href="#">
-                    {this.props.user ? <button onClick={this.handleLogout}>Logout</button> : null}
+                    {this.props.user.username ? <button onClick={this.handleLogout}>Logout</button> : null}
                   </Nav.Link>
                 </div>
               </Nav>
