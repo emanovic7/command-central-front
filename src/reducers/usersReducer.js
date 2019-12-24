@@ -7,6 +7,7 @@ const defaultState = {
 
 
 export default(state = defaultState, action) => {
+  debugger;
   switch (action.type) {
     case "SET_USER":
       return action.user

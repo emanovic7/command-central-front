@@ -33,7 +33,7 @@ class SignUpPage extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
-    this.props.signUp(this.state.name, this.state.username, this.state.password)
+    this.props.signUp(this.state)
     .then(() => {
       this.props.history.push("/profile")
     })

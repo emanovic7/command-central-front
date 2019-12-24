@@ -1,28 +1,25 @@
 
 
 //SIGNUP
-export const signUp = (name, username, password) => dispatch => {
-  dispatch({ type: "SIGNUP_REQUEST_START" })
-  return fetch('https://jarvis-back.herokuapp.com/users', {
+export const signUp = (user) => dispatch => {
+  return fetch('http://localhost:3000/users', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
     },
     body: JSON.stringify({
-      name: name,
-      username: username,
-      password: password
+      name: user.name,
+      username: user.username,
+      password: user.password
     })
   })
   .then(res => res.json())
   .then((user) => {
-    dispatch({ type: 'ADD_USER' })
-  })
-  .catch(error => {
-    dispatch({ type: 'SIGNUP_REQUEST_FAILURE', error: error })
+    dispatch({type: 'ADD_USER', user: user })
   })
 }
+
 
 //LOGOUT
 export const logOut = () => dispatch => {
