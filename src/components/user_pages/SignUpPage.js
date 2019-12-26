@@ -31,12 +31,36 @@ class SignUpPage extends Component {
     })
   }
 
+  addUser = (user) => {
+    fetch('http://localhost:3000/users', {
+      method: "POST",
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        name: user.name,
+        username: user.username,
+        password: user.password
+      })
+    })
+    .then(response => response.json())
+    .then(data => {
+      if(data.token){
+        localStorage.token = data.token
+        this.props.history.push('/profile')
+      }
+    })
+
+  }
+
   handleSubmit = (event) => {
     event.preventDefault()
-    this.props.signUp(this.state)
-    .then(() => {
-      this.props.history.push("/profile")
-    })
+    // this.props.signUp(this.state)
+    // .then(() => {
+    //   this.props.history.push("/profile")
+    // })
+    this.addUser(this.state)
   }
 
   render(){
@@ -70,7 +94,7 @@ const mapStateToProps = store => {
   }
 }
 
-const mapDispatchToProps = {
+const mapDispatchToProps =  {
   signUp: signUp
 }
 
