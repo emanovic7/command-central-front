@@ -30,7 +30,7 @@ class TasksContainer extends Component {
 
   //ADD TASK
   handleNewTask = (task) => {
-
+    debugger;
     fetch('https://jarvis-back.herokuapp.com/tasks', {
       method: "POST",
       headers: {
@@ -39,7 +39,7 @@ class TasksContainer extends Component {
       },
       body: JSON.stringify({
         note: task.note,
-        user_id: this.props.user.id,
+        user_id: task.user_id,
         done: false
       })
     })
@@ -51,7 +51,6 @@ class TasksContainer extends Component {
 
   //COMPLETE TASK
   handleComplete = (newTask) => {
-
     const updatedTasks = this.state.tasks.map(task =>{
       if(task.id === newTask.id){
         // task.done = true;
@@ -104,7 +103,7 @@ class TasksContainer extends Component {
 
 
   render(){
-
+    console.log("task props", this.props)
     //INCOMPLETE TASKS
     const userIncompleteTasks = this.state.tasks.filter(task =>
       (task.user_id === this.props.user.id)
