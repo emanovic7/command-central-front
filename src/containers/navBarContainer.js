@@ -33,7 +33,7 @@ class NavBarContainer extends Component {
                 <Nav.Link href="/reservations">Reservations</Nav.Link>
 
                 <Nav>
-                  <Nav.Link>Current Location: </Nav.Link>
+                  <Nav.Link>Current Location: {this.props.location}</Nav.Link>
                   <Nav.Link>Local Time: </Nav.Link>
                 </Nav>
               </Nav>
@@ -58,7 +58,8 @@ class NavBarContainer extends Component {
 
 const mapStateToProps = (store) => {
   return {
-    user: store.currentUser
+    user: store.currentUser,
+    location: store.geolocation.location
   }
 }
 
