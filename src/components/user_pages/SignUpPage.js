@@ -32,7 +32,7 @@ class SignUpPage extends Component {
   }
 
   addUser = (user) => {
-    fetch('http://localhost:3000/users', {
+    fetch('https://jarvis-back.herokuapp.com/signup', {
       method: "POST",
       headers: {
         "Accept": "application/json",

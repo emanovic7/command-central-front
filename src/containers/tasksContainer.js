@@ -30,7 +30,6 @@ class TasksContainer extends Component {
 
   //ADD TASK
   handleNewTask = (task) => {
-    debugger;
     fetch('https://jarvis-back.herokuapp.com/tasks', {
       method: "POST",
       headers: {
