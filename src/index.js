@@ -21,7 +21,6 @@ ReactDOM.render(
       <div>
       <App />
       <Geolocation />
-      <ReverseLocation />
       </div>
     </BrowserRouter>
   </Provider>,

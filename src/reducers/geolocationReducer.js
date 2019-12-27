@@ -1,16 +1,12 @@
 const defaultState = {
-  longitude: '',
-  latitude: ''
+  location: ''
 }
 
 
 export default(state=defaultState, action) => {
   switch (action.type) {
-    case "SET_LATITUDE":
-      return {...action.latitude}
-    case "SET_LONGITUDE":
-      return {...action.longitude}
-
+    case "SET_LOCATION":
+      return {location: action.location}
     default:
       return state;
   }

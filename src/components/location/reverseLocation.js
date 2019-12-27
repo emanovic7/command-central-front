@@ -13,13 +13,14 @@ class ReverseLocation extends Component {
 
   componentDidMount(){
     const API_KEY = "AIzaSyDlFzVIkqtTEuuhFi5ACR6OVx-YbtkVWOc";
-
-    fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=40.7443057,-73.996217&result_type=neighborhood&key=${API_KEY}`)
+    const LATITUDE = this.props.geolocation[1];
+    const LONGITUDE = this.props.geolocation[0];
+    fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${LATITUDE},${LONGITUDE}&result_type=neighborhood&key=${API_KEY}`)
     .then(response => response.json())
-    .then(data => this.setState({
-      location: data.results[0].formatted_address
-    }))
-    //.then(data => console.log(data.results[0].formatted_address))
+    // .then(data => this.setState({
+    //   location: data.results[0].formatted_address
+    // }))
+    .then(data => console.log(data))
     //.then(location => this.props.setLocation(location))
   }
 
@@ -28,6 +29,7 @@ class ReverseLocation extends Component {
 
   render(){
     console.log("reverseLocation props", this.props)
+    console.log("reverseLocation state", this.props.geolocation)
     return (
       <div>
         <p> location: {this.state.location} </p>
@@ -36,6 +38,11 @@ class ReverseLocation extends Component {
   }
 }
 
+const mapStateToProps = (store) => {
+  return {
+    geolocation: store.geolocation
+  }
+}
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -47,4 +54,4 @@ const mapDispatchToProps = (dispatch) => {
 
 
 
-export default connect(null, mapDispatchToProps)(ReverseLocation);
+export default connect(mapStateToProps, mapDispatchToProps)(ReverseLocation);

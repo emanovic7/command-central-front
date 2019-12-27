@@ -39,9 +39,7 @@ class App extends Component {
   constructor(){
     super()
     this.state = {
-      favorites: [],
-      longitude: '',
-      latitude: ''
+      favorites: []
     }
   }
 
@@ -148,7 +146,6 @@ class App extends Component {
 }
 
 const mapStateToProps = (store) => {
-
   return {
     username: store.currentUser.username,
     userID: store.currentUser.id,

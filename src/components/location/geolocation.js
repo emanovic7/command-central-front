@@ -1,16 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-class Geolocation extends React.Component {
 
+
+class Geolocation extends React.Component {
   constructor(){
     super()
     this.state = {
       longitude: '',
-      latitude: ''
+      latitude: '',
+      location: ''
     }
   }
 
+  //FETCH COORDINATES
   componentDidMount(){
     const options = {
       enableHighAccuracy: true,
@@ -19,12 +22,10 @@ class Geolocation extends React.Component {
     };
 
         const success = (position) => {
-          // this.setState({
-          //    longitude: position.coords.longitude,
-          //    latitude: position.coords.latitude
-          // });
-          this.props.setLatitude(position.coords.latitude)
-          this.props.setLongitude(position.coords.longitude)
+          this.setState({
+             longitude: position.coords.longitude,
+             latitude: position.coords.latitude
+          });
         }
 
         const error = (err) => {
@@ -39,7 +40,21 @@ class Geolocation extends React.Component {
   }
 
 
+
   render(){
+      //GET ADDRESS USING REVERSE GEOLOCATION
+    if(this.state.longitude && this.state.latitude){
+      const API_KEY = "AIzaSyDlFzVIkqtTEuuhFi5ACR6OVx-YbtkVWOc";
+      const LATITUDE = this.state.latitude;
+      const LONGITUDE = this.state.longitude;
+      fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${LATITUDE},${LONGITUDE}&result_type=neighborhood&key=${API_KEY}`)
+      .then(response => response.json())
+      // .then(data => this.setState({
+      //   location: data.results[0].formatted_address
+      // }))
+      .then(data => this.props.setLocation(data.results[0].formatted_address))
+    }
+
 
     return(
       <div>
@@ -48,25 +63,17 @@ class Geolocation extends React.Component {
       </div>
     )
   }
-
 }
 
 
 
 const mapDispatchToProps = (dispatch) => {
   return{
-    setLatitude: (latitude) => {
-      dispatch({type: "SET_LATITUDE", latitude: latitude})
-    },
-    setLongitude: (longitude) => {
-      dispatch({type: "SET_LONGITUDE", longitude: longitude})
+    setLocation: (location) => {
+      dispatch({type: "SET_LOCATION", location: location})
     }
   }
 }
-
-
-
-
 
 
 export default connect(null, mapDispatchToProps)(Geolocation)
