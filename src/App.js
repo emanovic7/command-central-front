@@ -151,7 +151,8 @@ const mapStateToProps = (store) => {
 
   return {
     username: store.currentUser.username,
-    userID: store.currentUser.id
+    userID: store.currentUser.id,
+    geolocation: store.geolocation
   }
 }
 

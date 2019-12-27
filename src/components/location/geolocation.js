@@ -11,30 +11,35 @@ class Geolocation extends React.Component {
     }
   }
 
-
-  render(){
+  componentDidMount(){
     const options = {
       enableHighAccuracy: true,
       timeout: 5000,
       maximumAge: 0
     };
 
-    const success = (position) => {
-      this.setState({
-         longitude: position.coords.longitude,
-         latitude: position.coords.latitude
-      });
-    }
+        const success = (position) => {
+          // this.setState({
+          //    longitude: position.coords.longitude,
+          //    latitude: position.coords.latitude
+          // });
+          this.props.setLatitude(position.coords.latitude)
+          this.props.setLongitude(position.coords.longitude)
+        }
 
-    const error = (err) => {
-      console.warn(`ERROR(${err.code}): ${err.message}`);
-    }
+        const error = (err) => {
+          console.warn(`ERROR(${err.code}): ${err.message}`);
+        }
 
     if('geolocation' in navigator){
       navigator.geolocation.getCurrentPosition(success, error, options);
     } else {
       alert('geolocation not available.')
     }
+  }
+
+
+  render(){
 
     return(
       <div>
@@ -46,17 +51,15 @@ class Geolocation extends React.Component {
 
 }
 
-const mapStateToProps = (store) => {
-  return{
-    user: store.user,
-    latitude: store.latitude
-  }
-}
+
 
 const mapDispatchToProps = (dispatch) => {
   return{
-    setLatittude: () => {
-      dispatch({type: "SET_LATITUDE", latitude: 'latitudeas'})
+    setLatitude: (latitude) => {
+      dispatch({type: "SET_LATITUDE", latitude: latitude})
+    },
+    setLongitude: (longitude) => {
+      dispatch({type: "SET_LONGITUDE", longitude: longitude})
     }
   }
 }
@@ -66,4 +69,4 @@ const mapDispatchToProps = (dispatch) => {
 
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Geolocation)
+export default connect(null, mapDispatchToProps)(Geolocation)

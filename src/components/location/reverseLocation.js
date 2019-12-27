@@ -16,11 +16,11 @@ class ReverseLocation extends Component {
 
     fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=40.7443057,-73.996217&result_type=neighborhood&key=${API_KEY}`)
     .then(response => response.json())
-    // .then(data => this.setState({
-    //   location: data.results[0].formatted_address
-    // }))
-    // .then(data => console.log(data.results[0].formatted_address))
-    // .then(location => this.props.setLocation(location))
+    .then(data => this.setState({
+      location: data.results[0].formatted_address
+    }))
+    //.then(data => console.log(data.results[0].formatted_address))
+    //.then(location => this.props.setLocation(location))
   }
 
 
