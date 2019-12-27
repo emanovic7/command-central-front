@@ -36,13 +36,14 @@ class ProfilePage extends Component {
   //GRAB USER
     componentDidMount() {
       if (localStorage.token){
-        fetch('http://localhost:3000/profile',{
+        fetch('https://jarvis-back.herokuapp.com/profile',{
           headers: {
             'Authorization': `Bearer ${localStorage.token}`
           }
         })
         .then(res => res.json())
         .then(user => this.props.setUser(user))
+        //.then(user => console.log(user))
 
     }
     else {

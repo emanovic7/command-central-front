@@ -88,14 +88,10 @@ class SignUpPage extends Component {
   }
 }
 
-const mapStateToProps = store => {
-  return {
-    user: store.currentUser
-  }
-}
+
 
 const mapDispatchToProps =  {
   signUp: signUp
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignUpPage)
+export default connect(null, mapDispatchToProps)(SignUpPage)
