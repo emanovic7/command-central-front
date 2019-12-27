@@ -17,6 +17,18 @@ class NavBarContainer extends Component {
   }
 
   render(){
+
+    //Current Time
+    const getCurrentTime = () => {
+      let date = new Date();
+      let hours = date.getHours();
+      let minutes = date.getMinutes();
+
+      return `${hours}:${minutes}`
+
+    }
+
+
     console.log("navbar state", this.props)
     return(
       <div className="NavBar">
@@ -34,7 +46,7 @@ class NavBarContainer extends Component {
 
                 <Nav>
                   <Nav.Link>Current Location: {this.props.location}</Nav.Link>
-                  <Nav.Link>Local Time: </Nav.Link>
+                  <Nav.Link>Local Time: {getCurrentTime()}</Nav.Link>
                 </Nav>
               </Nav>
                 :
