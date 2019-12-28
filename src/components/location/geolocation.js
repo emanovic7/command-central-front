@@ -52,14 +52,14 @@ class Geolocation extends React.Component {
       // .then(data => this.setState({
       //   location: data.results[0].formatted_address
       // }))
-      .then(data => this.props.setLocation(data.results[0].formatted_address))
+      //.then(data => this.props.setLocation(data.results[0].formatted_address))
+      .then(data => console.log(data))
     }
 
 
     return(
       <div>
-        <p>Latitude: {this.state.latitude}</p>
-        <p>Longitude: {this.state.longitude}</p>
+
       </div>
     )
   }
