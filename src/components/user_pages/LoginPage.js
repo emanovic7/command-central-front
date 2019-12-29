@@ -1,17 +1,6 @@
 import React, { Component } from 'react';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import Link from '@material-ui/core/Link';
-import Paper from '@material-ui/core/Paper';
-import Box from '@material-ui/core/Box';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-
-
-
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 
 class LoginPage extends Component {
 
@@ -55,13 +44,21 @@ class LoginPage extends Component {
     return(
       <div className="Homepage">
       <h2>Please Login!</h2>
-        <form onSubmit={this.handleSubmit}>
-          <label>Username</label>
-          <input type="text" name="username" value={this.state.username} onChange={this.handleChange} /><br />
-          <label>Password</label>
-          <input type="password" name="password" value={this.state.password} onChange={this.handleChange} /><br />
-          <input type="submit" value="log in" />
-        </form>
+      <Form onSubmit={this.handleSubmit}>
+        <Form.Group controlId="formBasicEmail">
+          <Form.Label>username</Form.Label>
+          <Form.Control type="text" placeholder="Enter Username" name="username" value={this.state.username} onChange={this.handleChange}/>
+        </Form.Group>
+
+        <Form.Group controlId="formBasicPassword">
+          <Form.Label>Password</Form.Label>
+          <Form.Control type="password" placeholder="Password" name="password" value={this.state.password} onChange={this.handleChange} />
+        </Form.Group>
+
+        <Button variant="primary" type="submit">
+          Submit
+        </Button>
+      </Form>
       </div>
     )
   }
