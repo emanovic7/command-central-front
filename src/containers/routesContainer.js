@@ -15,6 +15,7 @@ class RoutesContainer extends Component {
       start: '',
       end: '',
       mode: 'transit',
+      currentLocation: false,
       data: []
     }
   }
@@ -51,12 +52,17 @@ class RoutesContainer extends Component {
     })
   }
 
+  handleLocationChange = (event) => {
+    this.setState({
+      currentLocation: !this.state.currentLocation
+    })
+  }
+
 
 
   render(){
     console.log("state from routes", this.state)
-    console.log("data from routes", this.state.data)
-    console.log("props from routes", this.props)
+
 
     const sumTravelTime = () => {
       let sum = 0;
@@ -92,12 +98,16 @@ class RoutesContainer extends Component {
             <option value="transit">Transit</option>
             <option value="bike">Bike</option>
             <option value="drive">Drive</option>
-          </select><br />
+          </select><br /><br />
+
+          use my current location: <input type="checkbox" name="currentLocation" value={this.state.currentLocation} onChange={this.handleLocationChange}/>
 
           <Form onSubmit={this.handleSubmit}>
+          {this.state.currentLocation === false ?
             <Form.Group controlId="formBasicEmail">
               <Form.Control type="text" placeholder="starting point" name="start" value={this.state.start} onChange={this.handleChange} />
             </Form.Group>
+            : null }
 
             <Form.Group controlId="formBasicEmail">
               <Form.Control type="text" placeholder="ending point" name="end" value={this.state.end} onChange={this.handleChange} />
@@ -132,7 +142,8 @@ class RoutesContainer extends Component {
 
   const mapStateToProps = (store) => {
     return {
-      store: store
+      latitude: store.geolocation.latitude,
+      longitude: store.geolocation.longitude
     }
   }
 
