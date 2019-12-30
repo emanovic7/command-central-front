@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Restaurant from '../components/restaurants/restaurant';
 import RestaurantsBoard from '../components/restaurants/restaurant';
 import Form from 'react-bootstrap/Form';
@@ -24,7 +25,20 @@ class RestaurantsContainer extends Component {
   handleRestaurantsFetch = () => {
     const API_KEY = "9wVGFz42pdKJ8LvcERXRPwdKw-Z2cT5v--4Uh9HxIGZ9HjBh2d4G_oqxXmGgCT5yhfatqwIiFRIf_GYZ3xmaqtHO8yhhOGCeVkGNClqrKBBjd__EfIVcW6kH6-yAXXYx";
     let locationSearched = this.state.location;
+    let latitude = this.props.latitude;
+    let longitude = this.props.longitude;
     let term = this.state.term;
+    if(this.state.currentLocation === true){
+      fetch(`${'https://cors-anywhere.herokuapp.com/'}https://api.yelp.com/v3/businesses/search?latitude=${latitude}&longitude=${longitude}&term=${term}`, {
+        headers: {
+          Authorization: `Bearer ${API_KEY}`
+        }
+      })
+      .then(response => response.json())
+      .then(data => this.setState({
+        restaurants: data.businesses
+      }))
+    }else {
     fetch(`${'https://cors-anywhere.herokuapp.com/'}https://api.yelp.com/v3/businesses/search?location=${locationSearched}&term=${term}`, {
       headers: {
         Authorization: `Bearer ${API_KEY}`
@@ -34,6 +48,7 @@ class RestaurantsContainer extends Component {
     .then(data => this.setState({
       restaurants: data.businesses
     }))
+  }
   }
 
   handleChange = (event) => {
@@ -55,14 +70,16 @@ class RestaurantsContainer extends Component {
 
   handleLocationChange = (event) => {
     this.setState({
-      currentLocation: !this.state.currentLocation,
-      start: `${this.props.latitude},${this.props.longitude}`
+      currentLocation: !this.state.currentLocation
     })
   }
 
 
 
   render(){
+
+    console.log("restaurant state", this.state);
+    console.log("restaurant props", this.props)
 
     const AllRestaurants = this.state.restaurants.map((restaurant, idx) =>
       <Restaurant key={idx} restaurant={restaurant} />
@@ -122,5 +139,12 @@ class RestaurantsContainer extends Component {
   }
 }
 
+const mapStateToProps = (store) => {
+  return {
+    latitude: store.geolocation.latitude,
+    longitude: store.geolocation.longitude
+  }
+}
 
-export default RestaurantsContainer;
+
+export default connect(mapStateToProps, null)(RestaurantsContainer);
