@@ -49,17 +49,20 @@ class Geolocation extends React.Component {
       const LONGITUDE = this.state.longitude;
       fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${LATITUDE},${LONGITUDE}&result_type=neighborhood&key=${API_KEY}`)
       .then(response => response.json())
-      // .then(data => this.setState({
-      //   location: data.results[0].formatted_address
-      // }))
-      //.then(data => this.props.setLocation(data.results[0].formatted_address))
-      .then(data => console.log(data))
+      //.then(data => this.props.setLocation([data.results[0].formatted_address), LATITUDE, LONGITUDE])
+      .then(data => this.props.setLocation({
+        location: data.results[0].formatted_address,
+        latitude: LATITUDE,
+        longitude: LONGITUDE
+      }))
+
     }
 
 
     return(
       <div>
-
+        <p>Latitude: {this.state.latitude}</p>
+        <p>Longitude: {this.state.longitude}</p>
       </div>
     )
   }
@@ -69,8 +72,8 @@ class Geolocation extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
   return{
-    setLocation: (location) => {
-      dispatch({type: "SET_LOCATION", location: location})
+    setLocation: (data) => {
+      dispatch({type: "SET_LOCATION", location: data.location, latitude: data.latitude, longitude: data.longitude})
     }
   }
 }

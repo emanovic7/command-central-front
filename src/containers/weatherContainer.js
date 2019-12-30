@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row'
+import Row from 'react-bootstrap/Row';
+import { connect } from 'react-redux';
 
 
 //COMPONENTS
@@ -23,21 +24,21 @@ class WeatherContainer extends Component {
 
 
   componentDidMount(){
-    fetch(`${'https://cors-anywhere.herokuapp.com/'}https://api.darksky.net/forecast/8a184aa8519f4a7c7742386e6cf699d8/42.3601,-71.0589?exclude=minutely,flags,hourly`)
+    fetch(`${'https://cors-anywhere.herokuapp.com/'}https://api.darksky.net/forecast/8a184aa8519f4a7c7742386e6cf699d8/${this.props.latitude},${this.props.longitude}?exclude=minutely,flags,hourly`)
     .then(response => response.json())
     .then(data => this.setState({
       weather: data,
       currently: data.currently,
       daily: data.daily.data
     }))
+    //.then(data => console.log(data))
   }
 
 
 
   render(){
-    console.log(this.state.weather)
-    console.log(this.state.daily)
-    console.log(this.state.currently)
+    console.log("latitude", this.props.latitude)
+    console.log("longitude", this.props.longitude)
 
     const fiveDayForecast = this.state.daily.map(weather =>
       <FiveDayWeather weather={weather} />
@@ -46,7 +47,7 @@ class WeatherContainer extends Component {
     return(
       <div className="WeatherContainer">
         <Container>
-        
+
           <Row>
             <Weather
               currently={this.state.currently}
@@ -62,7 +63,14 @@ class WeatherContainer extends Component {
   }
 }
 
-export default WeatherContainer;
+const mapStateToProps = (store) => {
+  return {
+    latitude: store.geolocation.latitude,
+    longitude: store.geolocation.longitude
+  }
+}
+
+export default connect(mapStateToProps, null)(WeatherContainer);
 
 //
 // 8a184aa8519f4a7c7742386e6cf699d8
