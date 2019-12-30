@@ -54,7 +54,8 @@ class RoutesContainer extends Component {
 
   handleLocationChange = (event) => {
     this.setState({
-      currentLocation: !this.state.currentLocation
+      currentLocation: !this.state.currentLocation,
+      start: `${this.props.latitude},${this.props.longitude}`
     })
   }
 
@@ -62,6 +63,7 @@ class RoutesContainer extends Component {
 
   render(){
     console.log("state from routes", this.state)
+    console.log("routes props", this.props)
 
 
     const sumTravelTime = () => {
@@ -90,6 +92,7 @@ class RoutesContainer extends Component {
     }
 
     return(
+
       <div>
 
         <div>
