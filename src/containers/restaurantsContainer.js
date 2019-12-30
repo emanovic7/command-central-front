@@ -15,7 +15,8 @@ class RestaurantsContainer extends Component {
       restaurants: [],
       location: '',
       category: '',
-      term: ''
+      term: '',
+      currentLocation: false
     }
   }
 
@@ -52,6 +53,13 @@ class RestaurantsContainer extends Component {
     })
   }
 
+  handleLocationChange = (event) => {
+    this.setState({
+      currentLocation: !this.state.currentLocation,
+      start: `${this.props.latitude},${this.props.longitude}`
+    })
+  }
+
 
 
   render(){
@@ -68,14 +76,18 @@ class RestaurantsContainer extends Component {
 
       <div>
       <h1>food and places</h1><br />
+
+      use my current location <input type="checkbox" name="currentLocation" value={this.state.currentLocation} onChange={this.handleLocationChange}/><br />
       {this.state.restaurants.length === 0 ?
 
-
           <Form onSubmit={this.handleSubmit}>
+          {this.state.currentLocation === false ?
             <Form.Group >
               <Form.Label>Location</Form.Label>
               <Form.Control type="text" placeholder="eg. chelsea new york" name="location" value={this.state.location} onChange={this.handleChange}/>
             </Form.Group>
+            : null
+          }
 
             <Form.Group >
               <Form.Label>Term</Form.Label>
