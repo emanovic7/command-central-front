@@ -1,16 +1,37 @@
 import React, { Component } from 'react';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
+import Grid from "@material-ui/core/Grid";
+import { withStyles } from "@material-ui/core/styles";
+import PropTypes from "prop-types";
+import Typography from "@material-ui/core/Typography";
+import TextField from "@material-ui/core/TextField";
+import { Button } from '@material-ui/core';
+
+//images
+import background from '../../images/background4.gif';
+
+
+const styles = theme => ({
+  root: {
+    margin: theme.spacing.unit * 8,
+    padding: theme.spacing.unit * 3
+  },
+  item: {
+    padding: theme.spacing.unit * 2
+  },
+  content: {
+    alignItems: 'center',
+    display: 'flex',
+    backgroundImage: `url(${background})`
+  }
+});
 
 class LoginPage extends Component {
 
-  constructor(){
-    super()
-    this.state = {
-      username: '',
-      password: ''
-    }
-  }
+  state = {
+    username: '',
+    password: ''
+  };
+
 
   handleChange = (e) => {
     this.setState({
@@ -41,28 +62,60 @@ class LoginPage extends Component {
   }
 
   render(){
-    return(
-      <div className="Homepage">
-      <h2>Please Login!</h2>
-      <Form onSubmit={this.handleSubmit}>
-        <Form.Group controlId="formBasicEmail">
-          <Form.Label>username</Form.Label>
-          <Form.Control type="text" placeholder="Enter Username" name="username" value={this.state.username} onChange={this.handleChange}/>
-        </Form.Group>
+    const { classes } = this.props;
+    const { username, password } = this.state;
 
-        <Form.Group controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control type="password" placeholder="Password" name="password" value={this.state.password} onChange={this.handleChange} />
-        </Form.Group>
 
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>
-      </Form>
+    return (
+      <div className={classes.root}>
+        <Grid container direction="column" alignItems="center">
+          <Grid item xs={12}>
+            <form onSubmit={this.handleSubmit}>
+              <Grid item xs={12}>
+                <Typography
+                  className={classes.item}
+                  gutterBottom
+                  variant="title"
+                >
+                  please login below
+                </Typography>
+              </Grid>
+              <Grid item className={classes.item}>
+                <TextField
+                  label="username"
+                  onChange={this.handleChange}
+                  value={this.state.username}
+                  name="username"
+                />
+              </Grid>
+              <Grid item className={classes.item}>
+                <TextField
+                  label="password"
+                  type="password"
+                  onChange={this.handleChange}
+                  value={this.state.password}
+                  name="password"
+                />
+              </Grid>
+              <Grid>
+                <Button
+                  type="submit"
+                  className={classes.button}
+                  onSubmit={this.handleSubmit}>Login
+
+                </Button>
+              </Grid>
+            </form>
+          </Grid>
+        </Grid>
       </div>
-    )
+    );
   }
 }
 
+LoginPage.propTypes = {
+  classes: PropTypes.object.isRequired
+};
 
-export default LoginPage;
+
+export default withStyles(styles)(LoginPage);

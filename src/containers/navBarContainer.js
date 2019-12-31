@@ -40,9 +40,10 @@ class NavBarContainer extends Component {
             {this.props.user.username ?
               <Nav className="mr-auto">
                 <Nav.Link href="/profile">{this.props.user.username}</Nav.Link>
-                <Nav.Link href="/events">Calendar</Nav.Link>
+              {/*  <Nav.Link href="/events">Calendar</Nav.Link>
                 <Nav.Link href="/favorites">Favorites</Nav.Link>
                 <Nav.Link href="/reservations">Reservations</Nav.Link>
+                */}
 
                 <Nav>
                   <Nav.Link>Current Location: {this.props.location}</Nav.Link>

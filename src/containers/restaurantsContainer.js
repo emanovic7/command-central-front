@@ -28,6 +28,7 @@ class RestaurantsContainer extends Component {
     let latitude = this.props.latitude;
     let longitude = this.props.longitude;
     let term = this.state.term;
+
     if(this.state.currentLocation === true){
       fetch(`${'https://cors-anywhere.herokuapp.com/'}https://api.yelp.com/v3/businesses/search?latitude=${latitude}&longitude=${longitude}&term=${term}`, {
         headers: {
@@ -44,6 +45,7 @@ class RestaurantsContainer extends Component {
         Authorization: `Bearer ${API_KEY}`
       }
     })
+    
     .then(response => response.json())
     .then(data => this.setState({
       restaurants: data.businesses
