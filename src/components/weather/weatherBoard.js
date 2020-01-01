@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
 import Paper from '@material-ui/core/Paper';
 import { Card, CardContent, Grid, Typography, Avatar, CardMedia } from '@material-ui/core';
+import { connect } from 'react-redux';
 // import AcUnitIcon from '@material-ui/icons/AcUnit'
 
 import weather from '../../images/weather.jpg';
@@ -56,6 +57,8 @@ const WeatherBoard = (props) => {
   const { className, ...rest } = props;
   const classes = useStyles();
 
+  console.log("weatherBoard props", props)
+
   return (
       <Card className={classes.root}>
         <CardContent >
@@ -69,10 +72,7 @@ const WeatherBoard = (props) => {
                 title="Weather"
               />
             <Grid item>
-              <Typography className={classes.title} color="textSecondary">Temp: 89</Typography>
-            </Grid>
-            <Grid item>
-              <Typography className={classes.title} color="textSecondary">Humidity: .40</Typography>
+              <Typography className={classes.title} color="textSecondary">click to get weather info for {props.location}</Typography>
             </Grid>
           </Grid>
         </CardContent>
@@ -80,4 +80,10 @@ const WeatherBoard = (props) => {
   )
 }
 
-export default WeatherBoard;
+const mapStateToProps = (store) => {
+  return {
+    location: store.geolocation.location
+  }
+}
+
+export default connect(mapStateToProps, null)(WeatherBoard);
