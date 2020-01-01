@@ -97,12 +97,11 @@ class LoginPage extends Component {
                   name="password"
                 />
               </Grid>
-              <Grid>
+              <Grid align="center">
                 <Button
                   type="submit"
                   className={classes.button}
                   onSubmit={this.handleSubmit}>Login
-
                 </Button>
               </Grid>
             </form>

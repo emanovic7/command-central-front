@@ -1,23 +1,35 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
-import { signUp } from '../../actions/userActions'
+import { connect } from 'react-redux';
+import { signUp } from '../../actions/userActions';
 
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
+//Material UI
+import Grid from "@material-ui/core/Grid";
+import { withStyles } from "@material-ui/core/styles";
+import PropTypes from "prop-types";
+import Typography from "@material-ui/core/Typography";
+import TextField from "@material-ui/core/TextField";
+import { Button } from '@material-ui/core';
 
 
+const styles = theme => ({
+  root: {
+    margin: theme.spacing.unit * 8,
+    padding: theme.spacing.unit * 3
+  },
+  item: {
+    padding: theme.spacing.unit * 2
+  }
+});
 
 
 class SignUpPage extends Component {
 
-  constructor(){
-    super()
-    this.state = {
-      "name": '',
-      "username": '',
-      "password": ''
-    }
-  }
+state = {
+      name: '',
+      username: '',
+      password: ''
+}
+
 
   componentDidMount(){
     if(localStorage.token){
@@ -64,25 +76,59 @@ class SignUpPage extends Component {
   }
 
   render(){
-      console.log("props from singup page",this.props)
-      console.log("state from singup page",this.state)
+      const { classes } = this.props;
+      const { name, username, password } = this.state;
     return(
 
-      <div className="Homepage">
-        <Form onSubmit={this.handleSubmit}>
-          <label>full name</label>
-          <input type="text" name="name" value={this.state.name} onChange={this.handleChange}/><br />
+      <div className={classes.root}>
 
-          <label>username</label>
-          <input type="text" name="username" value={this.state.username} onChange={this.handleChange}/><br />
-
-          <label>password</label>
-          <input type="password" name="password" value={this.state.password} onChange={this.handleChange}/><br />
-
-          <Button variant="primary" type="submit">
-            Submit
-          </Button>
-        </Form>
+        <Grid container direction="column" alignItems="center">
+          <Grid item xs={12}>
+            <form onSubmit={this.handleSubmit}>
+              <Grid item xs={12}>
+                <Typography
+                  className={classes.item}
+                  gutterBottom
+                  variant="title"
+                >
+                  please sign up below
+                </Typography>
+              </Grid>
+              <Grid item className={classes.item}>
+                <TextField
+                  label="full name"
+                  onChange={this.handleChange}
+                  value={this.state.name}
+                  name="name"
+                />
+              </Grid>
+              <Grid item className={classes.item}>
+                <TextField
+                  label="username"
+                  onChange={this.handleChange}
+                  value={this.state.username}
+                  name="username"
+                />
+              </Grid>
+              <Grid item className={classes.item}>
+                <TextField
+                  label="password"
+                  type="password"
+                  onChange={this.handleChange}
+                  value={this.state.password}
+                  name="password"
+                />
+              </Grid>
+              <Grid align="center">
+                <Button
+                  type="submit"
+                  className={classes.button}
+                  onSubmit={this.handleSubmit}>Sign Up
+                </Button>
+              </Grid>
+            </form>
+          </Grid>
+        </Grid>
       </div>
     )
   }
@@ -94,4 +140,10 @@ const mapDispatchToProps =  {
   signUp: signUp
 }
 
-export default connect(null, mapDispatchToProps)(SignUpPage)
+SignUpPage.propTypes = {
+  classes: PropTypes.object.isRequired
+};
+
+//export default withStyles(styles)(connect(null, mapDispatchToProps)(SignUpPage))
+
+export default connect(null, mapDispatchToProps)(withStyles(styles)(SignUpPage))
