@@ -46,7 +46,7 @@ class NavBarContainer extends Component {
                 */}
 
                 <Nav>
-                  {this.props.location ? <Nav.Link>Current Location: {this.props.location}</Nav.Link> : <p>Please Allow Site Access For Location</p>}
+                  {this.props.location ? <Nav.Link>Current Location: {this.props.location}</Nav.Link> : <Nav.Link>Current Location: Please Allow Site Access For Location</Nav.Link>}
                   <Nav.Link>Local Time: {getCurrentTime()}</Nav.Link>
                 </Nav>
               </Nav>
