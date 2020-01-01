@@ -10,7 +10,7 @@ class HomePage extends Component {
     return(
       <div className="Homepage">
         <div className="Homepage-text">
-          <h1>Welcome to JARVIS</h1>
+          <h1>Welcome to FOURAPPS</h1>
             <button><Link to="/login">Login</Link></button>
             <button><Link to="/signup">Sign Up</Link></button>
         </div>

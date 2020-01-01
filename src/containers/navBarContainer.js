@@ -33,7 +33,7 @@ class NavBarContainer extends Component {
     return(
       <div className="NavBar">
         <Navbar sticky="top" collapseOnSelect expland="lg" bg="primary" variant="dark">
-          <Navbar.Brand href="#home">JARVIS</Navbar.Brand>
+          <Navbar.Brand href="#home">FOURAPPS</Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
 
           <Navbar.Collapse id="basic-navbar-nav">
@@ -46,7 +46,7 @@ class NavBarContainer extends Component {
                 */}
 
                 <Nav>
-                  <Nav.Link>Current Location: {this.props.location}</Nav.Link>
+                  {this.props.location ? <Nav.Link>Current Location: {this.props.location}</Nav.Link> : <p>Please Allow Site Access For Location</p>}
                   <Nav.Link>Local Time: {getCurrentTime()}</Nav.Link>
                 </Nav>
               </Nav>
