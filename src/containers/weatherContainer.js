@@ -39,13 +39,11 @@ class WeatherContainer extends Component {
 
 
   render(){
-    console.log("latitude", this.props.latitude)
-    console.log("longitude", this.props.longitude)
 
     const fiveDayForecast = this.state.daily.map(weather =>
       <FiveDayWeather weather={weather} />
     )
-    console.log(fiveDayForecast)
+
     return(
       <div className="WeatherContainer">
         <Container>

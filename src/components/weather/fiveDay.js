@@ -108,8 +108,24 @@ const FiveDayWeather = (props) => {
     return timeOfDay;
   }
 
-  const weatherIcon = (icon) => {
-    return <img src={icon} alt={weather.icon} height={50} width={50} mode="fit" />
+  const weatherIcon = (weather, icon) => {
+    let term = ''
+   switch(icon.includes(term)){
+     case term==="clear":
+      return <img src={clear} alt={weather.icon} height={50} width={50} mode="fit"/>
+
+     case icon.includes("cloudy"):
+      return <img src={cloudy} alt={weather.icon} height={50} width={50} mode="fit"/>
+
+    case icon.includes("sunny"):
+      return <img src={sunny} alt={weather.icon} height={50} width={50} mode="fit"/>
+
+    case icon.includes("snow"):
+      return <img src={snow} alt={weather.icon} height={50} width={50} mode="fit"/>
+
+    default:
+      return <img src={snow} alt={weather.icon} height={50} width={50} mode="fit"/>;
+   }
   }
 
 
@@ -123,14 +139,14 @@ const FiveDayWeather = (props) => {
                   <Paper className={classes.paper} >
                     <p className={classes.details}>{getDay(weather.time)}</p>
                     <div align="center" >
-                      {weatherIcon(weather.icon)}
-                    
-                      {/* weather.icon==="rain"? <img src={rain} alt={weather.icon} height={50} width={50} mode="fit"/> :
+                      {weatherIcon(weather, weather.icon)}
+
+                      {/*weather.icon==="rain"? <img src={rain} alt={weather.icon} height={50} width={50} mode="fit"/> :
                       weather.icon.includes("clear")? <img src={clear} alt={weather.icon} height={50} width={50} mode="fit"/> :
                        weather.icon.includes("cloudy")? <img src={cloudy} alt={weather.icon} height={50} width={50} mode="fit"/> :
                         weather.icon.includes("sunny")? <img src={sunny} alt={weather.icon} height={50} width={50} mode="fit"/> :
                          weather.icon.includes("snow")? <img src={snow} alt={weather.icon} height={50} width={50} mode="fit"/> :
-                      null */}
+                      null*/}
 
 
                     </div><br />
