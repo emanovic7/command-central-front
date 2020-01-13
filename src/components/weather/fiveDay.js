@@ -108,6 +108,10 @@ const FiveDayWeather = (props) => {
     return timeOfDay;
   }
 
+  const weatherIcon = (icon) => {
+    return <img src={icon} alt={weather.icon} height={50} width={50} mode="fit" />
+  }
+
 
   return(
     <Grid container className={classes.root} spacing={0}>
@@ -119,12 +123,16 @@ const FiveDayWeather = (props) => {
                   <Paper className={classes.paper} >
                     <p className={classes.details}>{getDay(weather.time)}</p>
                     <div align="center" >
-                      { weather.icon==="rain"? <img src={rain} alt={weather.icon} height={50} width={50} mode="fit"/> :
+                      {weatherIcon(weather.icon)}
+                    
+                      {/* weather.icon==="rain"? <img src={rain} alt={weather.icon} height={50} width={50} mode="fit"/> :
                       weather.icon.includes("clear")? <img src={clear} alt={weather.icon} height={50} width={50} mode="fit"/> :
                        weather.icon.includes("cloudy")? <img src={cloudy} alt={weather.icon} height={50} width={50} mode="fit"/> :
                         weather.icon.includes("sunny")? <img src={sunny} alt={weather.icon} height={50} width={50} mode="fit"/> :
                          weather.icon.includes("snow")? <img src={snow} alt={weather.icon} height={50} width={50} mode="fit"/> :
-                      null}
+                      null */}
+
+
                     </div><br />
                     <h5 className={classes.details}>{weather.temperatureHigh}</h5>
                     <h5 className={classes.details}>{weather.temperatureLow}</h5>
