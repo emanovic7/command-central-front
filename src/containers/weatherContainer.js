@@ -24,7 +24,9 @@ class WeatherContainer extends Component {
 
 
   componentDidMount(){
-    fetch(`${'https://cors-anywhere.herokuapp.com/'}https://api.darksky.net/forecast/8a184aa8519f4a7c7742386e6cf699d8/${this.props.latitude},${this.props.longitude}?exclude=minutely,flags,hourly`)
+    const URL = 'https://api.darksky.net/forecast/8a184aa8519f4a7c7742386e6cf699d8/';
+    const HEROKUPASS = 'https://cors-anywhere.herokuapp.com/'
+    fetch(`${HEROKUPASS}${URL}${this.props.latitude},${this.props.longitude}?exclude=minutely,flags,hourly`)
     .then(response => response.json())
     .then(data => this.setState({
       weather: data,
