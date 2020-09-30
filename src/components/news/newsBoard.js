@@ -58,6 +58,7 @@ const useStyles = makeStyles(theme => ({
 
 
 const NewsBoard = (props) => {
+  console.log("news board props", props)
   const newsItems = props.news.map(newsItem =>
     newsItem
   )
