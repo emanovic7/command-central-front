@@ -8,7 +8,7 @@
     "@material-ui/icons": "^4.4.3",
     "bootstrap": "^4.3.1",
     "cors": "^2.8.5",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "moment": "^2.24.0",
     "react": "^16.9.0",
     "react-big-calendar": "^0.22.1",
